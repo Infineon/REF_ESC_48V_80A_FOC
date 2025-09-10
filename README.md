@@ -1,0 +1,2 @@
+# REF_ESC_48V_80A_FOC
+Software for REF_ESC_48V_80A_FOC board
