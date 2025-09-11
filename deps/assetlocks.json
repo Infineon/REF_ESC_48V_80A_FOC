@@ -1,0 +1,38 @@
+[
+    {
+        "asset-name": "block-storage",
+        "locked-commit": "release-v1.3.1"
+    },
+    {
+        "asset-name": "cmsis",
+        "locked-commit": "release-v5.8.2"
+    },
+    {
+        "asset-name": "core-lib",
+        "locked-commit": "release-v1.4.4"
+    },
+    {
+        "asset-name": "core-make",
+        "locked-commit": "release-v3.6.2"
+    },
+    {
+        "asset-name": "device-db",
+        "locked-commit": "release-v4.28.0"
+    },
+    {
+        "asset-name": "mtb-hal-psc3",
+        "locked-commit": "release-v1.1.0"
+    },
+    {
+        "asset-name": "mtb-pdl-cat1",
+        "locked-commit": "release-v3.17.0"
+    },
+    {
+        "asset-name": "recipe-make-cat1b",
+        "locked-commit": "release-v2.8.0"
+    },
+    {
+        "asset-name": "syspm-callbacks-psc3",
+        "locked-commit": "release-v1.0.0"
+    }
+]
