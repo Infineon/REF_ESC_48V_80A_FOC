@@ -1,0 +1,3 @@
+
+TEMPLATE_REPLACE=../mtb_shared/core-make/release-v3.6.2/make/scripts/interface_version_4/.clangd=.clangd
+TEMPLATE_REPLACE=../mtb_shared/core-make/release-v3.6.2/make/scripts/interface_version_4/shared.clangd=../mtb_shared/.clangd

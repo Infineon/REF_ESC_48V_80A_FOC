@@ -14,17 +14,17 @@ libs/
 # assetlocks.json
 
 # ModusToolbox Configurator generated code and lock file
-GeneratedSource/
+#GeneratedSource/
 *.lock
 .mtbqueryapi
 
 # ModusToolbox BSP files. Any custom BSP file for code examples is shipped within the 'templates' folder
-bsps/
+#bsps/
 
 # ModusToolbox build system output
-build/
-Debug/
-Release/
+#build/
+#Debug/
+#Release/
 *_build/
 
 # Eclipse IDE for ModusToolbox files. Comment those files if you want to track them

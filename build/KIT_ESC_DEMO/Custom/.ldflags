@@ -1,0 +1,1 @@
+-mcpu=cortex-m33 --specs=nano.specs -mfloat-abi=hard -mfpu=fpv5-sp-d16 -mthumb -ffunction-sections -fdata-sections -ffat-lto-objects -g -Wall -pipe -Wl,--gc-sections -T"bsps/TARGET_KIT_ESC_DEMO/TOOLCHAIN_GCC_ARM/linker_s_flash.ld" -Wl,-Map,@mapfile -Wl,--start-group @objs -Wl,--end-group -o @elffile
