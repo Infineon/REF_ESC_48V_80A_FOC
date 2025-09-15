@@ -95,3 +95,10 @@ See the respective kit quick start guide for the hardware setup information. For
     <br>
     &nbsp;
 </li>
+<li id="step6"> Wait until the project is fully imported. Notice that additional folder 'mtb_shared' should be created (if there was none) in addition to the project folder itself, when the import is completed. This motor control project relies on the Infineon motor control library (current release is v3.0.0) provided in the ModusToolbox™ as shown inside the mtb_shared folder.<br><br>
+    <picture>
+        <img src="./images/mtb_import4.png">
+    </picture>
+    <br>
+    &nbsp;
+</li>
