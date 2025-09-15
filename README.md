@@ -35,11 +35,11 @@ Additionally this code demonstrates flightcontroller communication for:
     <td>PSOC™ Control C3 - high performance microcontroller tailored for motor control</td>
   </tr>
   <tr>
-    <td><a href="no link">TLI5572</a></td>
-    <td>XENSIV™ TLI5572 TMR-based current sensor with integrated op-amp</td>
+    <td><a href="no link">TLE5572-AE04E1-R-E0001</a></td>
+    <td>XENSIV™ TLE5572 TMR-based current sensor with integrated op-amp</td>
   </tr>
   <tr>
-    <td><a href=https://www.infineon.com/part/1EDN7550B">1EDN7550B</a></td>
+    <td><a href="https://www.infineon.com/part/1EDN7550B">1EDN7550B</a></td>
     <td>EiceDRIVER™ 1EDN7550B TDI gate driver</td>
   </tr>
   <tr>
@@ -68,3 +68,20 @@ See the respective kit quick start guide for the hardware setup information. For
 - [ModusToolbox™ Motor Suite](https://softwaretools.infineon.com/tools/com.ifx.tb.tool.ifxmotorsolutions?_gl=1*1ua47i0*_gcl_au*MTA4NjIyMTM2OC4xNzU1MTc0ODI1*_ga*MjEzNDIwNzg4MS4xNjk0NjkzMTU1*_ga_KVD0BL538B*czE3NTc1MDQ0NDkkbzM0JGcxJHQxNzU3NTA0OTAxJGo1NSRsMCRoMTE1NjE3MTY3OA..) v2.6.1.
 - Programming language: C
 - [J-Link Software](https://www.segger.com/downloads/jlink/) v8.40 or greater to allow the use of XMC™ Link to program the board and debug the software. 
+
+## Using the code example
+
+<ol>
+<li id="step1"> Clone the project repository into the local drive.
+<br><br></li>
+<li id="step2"> Open the ModusToolbox™ IDE (e.g. Eclipse for ModusToolbox™ 2025.4) and import the project with the import wizard by pressing 'File' – 'Import…'. <br><br>
+    <br>
+    &nbsp;
+</li>
+<li id="step3"> Select 'ModusToolbox™' – 'Import Existing Application In-Place' and press 'Next'. <br><br>
+    <picture>
+        <img src="./images/mtb_import.png">
+    </picture>
+    <br>
+    &nbsp;
+</li>
