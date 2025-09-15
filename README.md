@@ -83,7 +83,14 @@ See the respective kit quick start guide for the hardware setup information. For
 </li>
 <li id="step3"> Select 'ModusToolbox™' – 'Import Existing Application In-Place' and press 'Next'. <br><br>
     <picture>
-        <img src="./images/mtb_import2.png">
+        <img src="./images/mtb_import3.png">
+    </picture>
+    <br>
+    &nbsp;
+</li>
+<li id="step4"> Find the Project Location by pressing 'Browse…', and select the project folder accordingly and press 'Finish'. <br><br>
+    <picture>
+        <img src="./images/mtb_import2.png" >
     </picture>
     <br>
     &nbsp;
