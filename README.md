@@ -75,12 +75,15 @@ See the respective kit quick start guide for the hardware setup information. For
 <li id="step1"> Clone the project repository into the local drive.
 <br><br></li>
 <li id="step2"> Open the ModusToolbox™ IDE (e.g. Eclipse for ModusToolbox™ 2025.4) and import the project with the import wizard by pressing 'File' – 'Import…'. <br><br>
+    <picture>
+        <img src="./images/mtb_import.png">
+    </picture>
     <br>
     &nbsp;
 </li>
 <li id="step3"> Select 'ModusToolbox™' – 'Import Existing Application In-Place' and press 'Next'. <br><br>
     <picture>
-        <img src="./images/mtb_import.png">
+        <img src="./images/mtb_import2.png">
     </picture>
     <br>
     &nbsp;
