@@ -102,3 +102,24 @@ See the respective kit quick start guide for the hardware setup information. For
     <br>
     &nbsp;
 </li>
+<li id="step7"> Right click the project folder and select 'ModusToolbox™' followed by 'Library Manager 2...'. <br><br>
+    <picture>
+        <img src="./images/mtb_import5.png">
+    </picture>
+    <br>
+    &nbsp;
+</li>
+<li id="step8"> Press the 'Update' button <br><br>
+    <picture>
+        <img src="./images/mtb_import6.png">
+    </picture>
+    <br>
+    &nbsp;
+</li>
+<li id="step9"> When the Update is completed the sucessful messages should be displayed. If the update failed, try it again by repressing the 'Update' button. If this also fails, try to clean the project before trying it again. <br><br>
+    <picture>
+        <img src="./images/mtb_import7.png">
+    </picture>
+    <br>
+    &nbsp;
+</li>
