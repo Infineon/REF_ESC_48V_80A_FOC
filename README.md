@@ -1,4 +1,4 @@
-# REF_ESC_48V_80A_FOC code example for Drones
+# REF_ESC_48V_80A_FOC code example
 <a href="https://www.infineon.com">
 <img src="./images/Logo.svg" align="right" alt="Infineon logo">
 </a>
@@ -7,12 +7,12 @@
 
 ## Overview
 
-This code example demonstrates sensorless field-oriented control (FOC) for drone motors using the Infineon's PSOC™ Control C3 MCU and XENSIV™ TLx5572 TMR current sensor on the REF_ESC_48V_80A_FOC Electronic Speed Controller (ESC) reference design. This code example includes the following solutions based on Rotor Field Oriented (RFO) control: 
-- Sensorless PMSM FOC with 3-phase active sensing
-
-Additionally this code demonstrates flightcontroller communication for: 
-- transmitting throttle commands from the flightcontroller to the ESC 
-
+This code example demonstrates sensorless field-oriented control (FOC) for drone motors using the Infineon's PSOC™ Control C3 MCU and XENSIV™ TLx5572 TMR current sensor on the REF_ESC_48V_80A_FOC Electronic Speed Controller (ESC) reference design. This code example includes the sensorless PMSM FOC with 3-phase active sensing solution based on Rotor Field Oriented (RFO) control. Additionally this code demonstrates flightcontroller communication for transmitting throttle commands from the flightcontroller to the ESC. 
+<br>
+<picture>
+        <img src="./images/drone_esc.png">
+</picture>
+<br>
 ## Features
 
 - 3.3 V 32-bit microcontroller Arm® Cortex®-M33 180 MHz PSOC™ Control C3 with 256 kB Flash and 64 kB RAM
@@ -56,11 +56,11 @@ Additionally this code demonstrates flightcontroller communication for:
 
 ## Hardware requirements and setup
 
-- ESC reference design board: [REF_ESC_48V_80A_FOC](no link).
-- Associated motor, with known motor parameters. This example code is tuned for the following motor: [T-MOTOR MN501 KV240](https://shop.tmotor.com/products/mn501-s-multirotor-motors?srsltid=AfmBOorVqzCgUWqT5IR4bjkh6lcpRiYYxB-5boWXSW14rMeAczjffISg)
+- ESC reference design board: REF_ESC_48V_80A_FOC (link to board coming soon).
+- Associated motor, with known motor parameters. This example code is tuned for the following motor: [T-MOTOR MN1010 KV135](https://store.tmotor.com/product/mn1010-kv135-motor-navigator-type.html?srsltid=AfmBOopD3lbwFgz0K8ZUy3XOd1RxaxusDyx5FUrMTmFEpbElm3Bks7fq)
 - Programmer and Debugger for the board e.g. [XMC™ Link](https://www.infineon.com/evaluation-board/KIT-XMC-LINK-SEGGER-V1).
 
-See the respective kit quick start guide for the hardware setup information. For details, see the [User Manual](no link)  of the above reference design board. 
+See the respective kit quick start guide for the hardware setup information. For details, see the User Manual (link to user manual coming soon) of the above reference design board. 
 
 ## Software requirements and setup
 
@@ -123,7 +123,7 @@ See the respective kit quick start guide for the hardware setup information. For
     <br>
     &nbsp;
 </li>
-<li id="step9"> If a different motor then the tested ones are used, ensure that the motor parameters are set correctly. The header file with the parameters is found in '/configuration/motor-ctrl-lib-config/ParamConfig.h' <br><br>
+<li id="step9"> If a different motor then the tested ones are used, ensure that the motor parameters are set correctly. The header file with the parameters is found in */configuration/motor-ctrl-lib-config/ParamConfig.h* <br><br>
     <picture>
         <img src="./images/.png">
     </picture>
