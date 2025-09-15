@@ -1,6 +1,6 @@
 # REF_ESC_48V_80A_FOC code example
 <a href="https://www.infineon.com">
-<img src="./images/Logo.svg" align="right" alt="Infineon logo">
+<img src="./images/Logo.svg" align="left" alt="Infineon logo">
 </a>
 <br>
 <br>
@@ -10,7 +10,7 @@
 This code example demonstrates sensorless field-oriented control (FOC) for drone motors using the Infineon's PSOC™ Control C3 MCU and XENSIV™ TLx5572 TMR current sensor on the REF_ESC_48V_80A_FOC Electronic Speed Controller (ESC) reference design. This code example includes the sensorless PMSM FOC with 3-phase active sensing solution based on Rotor Field Oriented (RFO) control. Additionally this code demonstrates flightcontroller communication for transmitting throttle commands from the flightcontroller to the ESC. 
 <br>
 <picture>
-        <img src="./images/esc_drone.png" alt="esc_drone" width="600">
+        <img src="./images/esc_drone.png" align="center" alt="esc_drone" width="600">
 </picture>
 <br>
 ## Features
