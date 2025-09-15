@@ -123,3 +123,10 @@ See the respective kit quick start guide for the hardware setup information. For
     <br>
     &nbsp;
 </li>
+<li id="step9"> If a different motor then the tested ones are used, ensure that the motor parameters are set correctly. The header file with the parameters is found in '/configuration/motor-ctrl-lib-config/ParamConfig.h' <br><br>
+    <picture>
+        <img src="./images/.png">
+    </picture>
+    <br>
+    &nbsp;
+</li>
