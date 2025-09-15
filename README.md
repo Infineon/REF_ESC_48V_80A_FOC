@@ -10,7 +10,7 @@
 This code example demonstrates sensorless field-oriented control (FOC) for drone motors using the Infineon's PSOC™ Control C3 MCU and XENSIV™ TLx5572 TMR current sensor on the REF_ESC_48V_80A_FOC Electronic Speed Controller (ESC) reference design. This code example includes the sensorless PMSM FOC with 3-phase active sensing solution based on Rotor Field Oriented (RFO) control. Additionally this code demonstrates flightcontroller communication for transmitting throttle commands from the flightcontroller to the ESC. 
 <br>
 <picture>
-        <img src="./images/esc_drone.png">
+        <img src="./images/esc_drone.png" alt="esc_drone" width="200">
 </picture>
 <br>
 ## Features
