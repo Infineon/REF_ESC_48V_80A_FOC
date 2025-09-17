@@ -125,7 +125,14 @@ See the respective kit quick start guide for the hardware setup information. For
     <br>
     &nbsp;
 </li>
-<li id="step9"> If a different motor then the tested ones are used, ensure that the motor parameters are set correctly. The header file with the parameters is found in /configuration/motor-ctrl-lib-config/ParamConfig.h <br><br>
+<li id="step9"> Ensure that the motor parameters are set correctly. The header file with the parameters is found in /configuration/motor-ctrl-lib-config/ParamConfig.h. Also, when the DC bus voltage differs from the pre-set 48 V, change ADC_SCALE_VDC to scale for correct voltage readings.<br><br>
+    <picture>
+        <img src="./images/mtb_motorparams.png">
+    </picture>
+    <br>
+    &nbsp;
+</li>
+<li id="step11"> After updating the parameters, the firmware can be flashed to the device. <br><br>
     <picture>
         <img src="./images/mtb_motorparams.png">
     </picture>
@@ -138,16 +145,44 @@ See the respective kit quick start guide for the hardware setup information. For
 For direct evaluation of the motor control library it is recommended to use ModusToolbox™ Motor Suite. ModusToolbox™ Motor Suite allows real-time data monitoring using oscilloscope functions as well as easy change of control parameters written to the MCUs flash memory. 
 
 <ol>
-<li id="step1"> Open ModusToolbox™ Motor Suite in the ModusToolbox™ IDE.
-<br><br></li>
-<li id="step2"> Open the ModusToolbox™ IDE (e.g. Eclipse for ModusToolbox™ 2025.4) and import the project with the import wizard by pressing 'File' – 'Import…'. <br><br>
+<li id="step1"> Open ModusToolbox™ Motor Suite v2.6.1 in the ModusToolbox™ IDE. <br><br>
     <picture>
         <img src="./images/open_motorsuite.png">
     </picture>
     <br>
     &nbsp;
 </li>
+<li id="step2"> Create a new project by selecting PSOC Control™ C3M5 (Dual Motor Kit) and RFO as control method. <br><br>
+    <picture>
+        <img src="./images/GUI_startup.png">
+    </picture>
+    <br>
+    &nbsp;
+</li>
+<li id="step2"> Now the GUI control center will show up. Make sure that you are connected to the debugger (bottom right corner). On the bottom right panel there are icons with different functionality. From left to right: i) "Write Parameters" allows you to update parameter changes in the GUI to the MCU's flash memory. ii) "Flash Firmware" allows flashing a new .hex file to the MCU. iii) "Select ELF file" maps symbols from the .elf file to the GUI. iv) "Read Device" reads current parameters and updates the GUI. It is important to use the correct .elf as well as .hex files to maintain correct GUI performance. If firmware was already flashed to the MCU within ModusToolbox™ IDE, ensure correct symbol mapping by performing "Select ELF file". Point to the target .elf file of your project in the /build/last_config folder and the GUI will update.<br><br>
+    <picture>
+        <img src="./images/GUI_controlcenter.png">
+    </picture>
+    <br>
+    &nbsp;
+</li>
+<li id="step3"> In order to run the motor, change to the "Test Bench" view. The test bench provides live data and machine state information. Check if the bus voltage is displayed correctly. Also check that the machine state is in "Init" mode. If the state is "Faul", clear the faults by toggling the "Clear Fault" button<br><br>
+    <picture>
+        <img src="./images/GUI_bench_check.png">
+    </picture>
+    <br>
+    &nbsp;
+</li>
+<li id="step4"> The code example is set to speed control with alignment mode. Therefore, run the motor by setting a target speed (e.g. 20%) and the machine will transition to "Speed CL" state and the motor will spin.<br><br>
+</li>
 
+<li id="step5"> To investigate data while operation, ModusToolbox™ Motor Suite features an oscilloscope function. The icon is found on the top right corner.<br><br>
+    <picture>
+        <img src="./images/GUI_bench_check.png">
+    </picture>
+    <br>
+    &nbsp;
+</li>
 
 ## Other resources
 
