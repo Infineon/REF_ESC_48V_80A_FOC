@@ -127,7 +127,7 @@ See the respective kit quick start guide for the hardware setup information. For
 </li>
 <li id="step9"> If a different motor then the tested ones are used, ensure that the motor parameters are set correctly. The header file with the parameters is found in /configuration/motor-ctrl-lib-config/ParamConfig.h <br><br>
     <picture>
-        <img src="./images/.png">
+        <img src="./images/mtb_motorparams.png">
     </picture>
     <br>
     &nbsp;
@@ -138,11 +138,11 @@ See the respective kit quick start guide for the hardware setup information. For
 For direct evaluation of the motor control library it is recommended to use ModusToolbox™ Motor Suite. ModusToolbox™ Motor Suite allows real-time data monitoring using oscilloscope functions as well as easy change of control parameters written to the MCUs flash memory. 
 
 <ol>
-<li id="step1"> Clone the project repository into the local drive.
+<li id="step1"> Open ModusToolbox™ Motor Suite in the ModusToolbox™ IDE.
 <br><br></li>
 <li id="step2"> Open the ModusToolbox™ IDE (e.g. Eclipse for ModusToolbox™ 2025.4) and import the project with the import wizard by pressing 'File' – 'Import…'. <br><br>
     <picture>
-        <img src="./images/mtb_import.png">
+        <img src="./images/open_motorsuite.png">
     </picture>
     <br>
     &nbsp;
