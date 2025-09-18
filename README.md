@@ -178,7 +178,15 @@ For direct evaluation of the motor control library it is recommended to use Modu
 
 <li id="step5"> To investigate data while operation, ModusToolbox™ Motor Suite features an oscilloscope function. The icon is found on the top right corner.<br><br>
     <picture>
-        <img src="./images/GUI_bench_check.png">
+        <img src="./images/GUI_activate_scope.png">
+    </picture>
+    <br>
+    &nbsp;
+</li>
+
+<li id="step6"> The oscilloscope displays phase currents as well as electrical angle estimates from the observer. Successful operation should display phase currents and phase angle as shown in the picture below. <br><br>
+    <picture>
+        <img src="./images/GUI_angle.png">
     </picture>
     <br>
     &nbsp;
