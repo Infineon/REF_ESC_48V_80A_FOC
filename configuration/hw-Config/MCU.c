@@ -434,6 +434,8 @@ void MCU_RunISR1()
     XMC_CCU8_SLICE_ClearEvent((XMC_CCU8_SLICE_t*) SYNC_ISR1_HW, XMC_CCU8_SLICE_IRQ_ID_COMPARE_MATCH_UP_CH_1);
 #endif
 
+    motor[0].faults_ptr->react_mask[High_Z].hw.cs_ocp = 0b0;
+
 	capture0 = Cy_TCPWM_Counter_GetCapture0Val(FC_PWM_COUNTER_HW, FC_PWM_COUNTER_NUM);
 	capture1 = Cy_TCPWM_Counter_GetCapture1Val(FC_PWM_COUNTER_HW, FC_PWM_COUNTER_NUM);
 	
@@ -1508,6 +1510,8 @@ void MCU_RunISR1_M1()
        NVIC_ClearPendingIRQ(mcu[1].interrupt.nvic_sync_isr1);
 
     if(mcu[1].isr1.count++ == 1U) {MCU_DisableTimerReload_M1();}
+
+
 
 #if defined (N_FAULT_HW_M1_PORT)
     motor[1].sensor_iface_ptr->digital.fault = !Cy_GPIO_Read(N_FAULT_HW_M1_PORT, N_FAULT_HW_M1_NUM);
