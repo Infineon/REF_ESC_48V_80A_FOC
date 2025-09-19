@@ -213,12 +213,12 @@
 
 /*******************************************************************************/
 /*******Motor*******/
-#define MOTOR_POLE                                 (28.0f)                       /*[],  motor poles*/
-#define MOTOR_LQ                                   (5.0E-5f)                  /*[H], Stator q-axis inductance*/
-#define MOTOR_LD                                   (3.57E-5f)                  /*[H], Stator d-axis inductance*/
-#define MOTOR_I_AM                                 (1.70E-3f)                    /*[Wb],  Rotor flux linkage*/
-#define MOTOR_R                                    (87.0E-3f)                  /*{Ohm],  stator resistance*/
-#define MOTOR_TORQUE_MAX                           (0.8699f)                     /*[Nm],  maximum torque*/
+#define MOTOR_POLE                                 (42.0f)                       /*[],  motor poles*/
+#define MOTOR_LQ                                   (27.77E-6f)                  /*[H], Stator q-axis inductance*/
+#define MOTOR_LD                                   (18.0E-6f)                  /*[H], Stator d-axis inductance*/
+#define MOTOR_I_AM                                 (3.36E-3f)                    /*[Wb],  Rotor flux linkage*/
+#define MOTOR_R                                    (22.16E-3f)                  /*{Ohm],  stator resistance*/
+#define MOTOR_TORQUE_MAX                           (7.85f)                     /*[Nm],  maximum torque*/
 #define MOTOR_CURRENT_PEAK                         (20.0f)                     /*[A],  peak current rating*/
 #define MOTOR_CURRENT_CONT                         (10.0f)                      /*[A],  continuous current rating*/
 #define MOTOR_ID_MAX                               (5.0f)                      /*[A], maximum d-axis current*/
