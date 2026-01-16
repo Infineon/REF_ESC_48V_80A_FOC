@@ -1,18 +1,18 @@
    ---------------------------------------------------- 
   | Section Name         |  Address      |  Size       | 
    ---------------------------------------------------- 
-  | .text                |  0x12000000   |  63556      | 
-  | .ARM.exidx           |  0x1200f844   |  8          | 
-  | .copy.table          |  0x1200f84c   |  24         | 
-  | .zero.table          |  0x1200f864   |  8          | 
+  | .text                |  0x12000000   |  66660      | 
+  | .ARM.exidx           |  0x12010464   |  8          | 
+  | .copy.table          |  0x1201046c   |  24         | 
+  | .zero.table          |  0x12010484   |  8          | 
   | .ramVectors          |  0x34000000   |  624        | 
   | .data                |  0x34000270   |  968        | 
   | .noinit              |  0x34000638   |  152        | 
-  | .bss                 |  0x340006d0   |  38264      | 
-  | .heap                |  0x34009c48   |  21432      | 
+  | .bss                 |  0x340006d0   |  38304      | 
+  | .heap                |  0x34009c70   |  21392      | 
   | .cy_sharedmem        |  0x3400f800   |  8          | 
    ---------------------------------------------------- 
 
   Total Internal Flash (Available)          262144     
-  Total Internal Flash (Utilized)           64564      
+  Total Internal Flash (Utilized)           67668      
 

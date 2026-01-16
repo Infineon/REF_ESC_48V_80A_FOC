@@ -10,7 +10,7 @@
  * mtb-pdl-cat1 3.17.0.43048
  *
  *******************************************************************************
- * Copyright 2025 Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2026 Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -48,6 +48,12 @@ const cyhal_resource_inst_t CLK_FC_PWM_obj =
     .block_num = CLK_FC_PWM_HW,
     .channel_num = CLK_FC_PWM_NUM,
 };
+const cyhal_resource_inst_t peri_0_group_5_div_8_3_obj =
+{
+    .type = CYHAL_RSC_CLOCK,
+    .block_num = peri_0_group_5_div_8_3_HW,
+    .channel_num = peri_0_group_5_div_8_3_NUM,
+};
 #endif /* defined (CY_USING_HAL) */
 
 void init_cycfg_clocks(void)
@@ -59,8 +65,11 @@ void init_cycfg_clocks(void)
     Cy_SysClk_PeriPclkSetDivider((en_clk_dst_t)CLK_HALL_GRP_NUM, CY_SYSCLK_DIV_8_BIT, 1U, 0U);
     Cy_SysClk_PeriPclkEnableDivider((en_clk_dst_t)CLK_HALL_GRP_NUM, CY_SYSCLK_DIV_8_BIT, 1U);
     Cy_SysClk_PeriPclkDisableDivider((en_clk_dst_t)CLK_FC_PWM_GRP_NUM, CY_SYSCLK_DIV_8_BIT, 2U);
-    Cy_SysClk_PeriPclkSetDivider((en_clk_dst_t)CLK_FC_PWM_GRP_NUM, CY_SYSCLK_DIV_8_BIT, 2U, 23U);
+    Cy_SysClk_PeriPclkSetDivider((en_clk_dst_t)CLK_FC_PWM_GRP_NUM, CY_SYSCLK_DIV_8_BIT, 2U, 0U);
     Cy_SysClk_PeriPclkEnableDivider((en_clk_dst_t)CLK_FC_PWM_GRP_NUM, CY_SYSCLK_DIV_8_BIT, 2U);
+    Cy_SysClk_PeriPclkDisableDivider((en_clk_dst_t)PERI_0_GROUP_5_DIV_8_3_GRP_NUM, CY_SYSCLK_DIV_8_BIT, 3U);
+    Cy_SysClk_PeriPclkSetDivider((en_clk_dst_t)PERI_0_GROUP_5_DIV_8_3_GRP_NUM, CY_SYSCLK_DIV_8_BIT, 3U, 9U);
+    Cy_SysClk_PeriPclkEnableDivider((en_clk_dst_t)PERI_0_GROUP_5_DIV_8_3_GRP_NUM, CY_SYSCLK_DIV_8_BIT, 3U);
 }
 void reserve_cycfg_clocks(void)
 {
@@ -68,5 +77,6 @@ void reserve_cycfg_clocks(void)
     cyhal_hwmgr_reserve(&CLK_TCPWM_obj);
     cyhal_hwmgr_reserve(&CLK_HALL_obj);
     cyhal_hwmgr_reserve(&CLK_FC_PWM_obj);
+    cyhal_hwmgr_reserve(&peri_0_group_5_div_8_3_obj);
 #endif /* defined (CY_USING_HAL) */
 }

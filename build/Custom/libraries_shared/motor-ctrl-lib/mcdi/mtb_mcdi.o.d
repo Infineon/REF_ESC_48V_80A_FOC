@@ -1,6 +1,6 @@
-C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/build/Custom/libraries_shared/motor-ctrl-lib/mcdi/mtb_mcdi.o: \
- C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/mtb_shared/motor-ctrl-lib/release-v3.0.0/mcdi/mtb_mcdi.c \
- C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/mtb_shared/motor-ctrl-lib/release-v3.0.0/mcdi/mtb_mcdi.h \
+C:/Users/bidnerma/Documents/ESC_DSHOT_V2/REF_ESC_48V_80A_FOC-main/build/Custom/libraries_shared/motor-ctrl-lib/mcdi/mtb_mcdi.o: \
+ C:/Users/bidnerma/Documents/ESC_DSHOT_V2/mtb_shared/motor-ctrl-lib/release-v3.0.0/mcdi/mtb_mcdi.c \
+ C:/Users/bidnerma/Documents/ESC_DSHOT_V2/mtb_shared/motor-ctrl-lib/release-v3.0.0/mcdi/mtb_mcdi.h \
  ../mtb_shared/mtb-pdl-cat1/release-v3.17.0/devices/COMPONENT_CAT1B/include/cy_pdl.h \
  ../mtb_shared/mtb-pdl-cat1/release-v3.17.0/devices/COMPONENT_CAT1B/include/cy_device.h \
  ../mtb_shared/core-lib/release-v1.4.4/include/cy_utils.h \
@@ -113,7 +113,7 @@ C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/build/Custom/libraries_
  ../mtb_shared/mtb-pdl-cat1/release-v3.17.0/drivers/include/cy_flash.h \
  ../mtb_shared/mtb-pdl-cat1/release-v3.17.0/drivers/include/cy_ipc_drv.h \
  ../mtb_shared/mtb-pdl-cat1/release-v3.17.0/drivers/include/cy_cordic.h
-C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/mtb_shared/motor-ctrl-lib/release-v3.0.0/mcdi/mtb_mcdi.h:
+C:/Users/bidnerma/Documents/ESC_DSHOT_V2/mtb_shared/motor-ctrl-lib/release-v3.0.0/mcdi/mtb_mcdi.h:
 ../mtb_shared/mtb-pdl-cat1/release-v3.17.0/devices/COMPONENT_CAT1B/include/cy_pdl.h:
 ../mtb_shared/mtb-pdl-cat1/release-v3.17.0/devices/COMPONENT_CAT1B/include/cy_device.h:
 ../mtb_shared/core-lib/release-v1.4.4/include/cy_utils.h:

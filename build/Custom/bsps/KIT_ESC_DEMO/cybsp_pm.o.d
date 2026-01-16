@@ -1,6 +1,6 @@
-C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/build/Custom/bsps/KIT_ESC_DEMO/cybsp_pm.o: \
- C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/bsps/TARGET_KIT_ESC_DEMO/cybsp_pm.c \
- C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/bsps/TARGET_KIT_ESC_DEMO/cybsp_pm_callbacks.h \
+C:/Users/bidnerma/Documents/ESC_DSHOT_V2/REF_ESC_48V_80A_FOC-main/build/Custom/bsps/KIT_ESC_DEMO/cybsp_pm.o: \
+ C:/Users/bidnerma/Documents/ESC_DSHOT_V2/REF_ESC_48V_80A_FOC-main/bsps/TARGET_KIT_ESC_DEMO/cybsp_pm.c \
+ C:/Users/bidnerma/Documents/ESC_DSHOT_V2/REF_ESC_48V_80A_FOC-main/bsps/TARGET_KIT_ESC_DEMO/cybsp_pm_callbacks.h \
  ../mtb_shared/mtb-pdl-cat1/release-v3.17.0/drivers/include/cy_syspm.h \
  ../mtb_shared/mtb-pdl-cat1/release-v3.17.0/devices/COMPONENT_CAT1B/include/cy_device.h \
  ../mtb_shared/core-lib/release-v1.4.4/include/cy_utils.h \
@@ -52,14 +52,14 @@ C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/build/Custom/bsps/KIT_E
  ../mtb_shared/mtb-pdl-cat1/release-v3.17.0/devices/COMPONENT_CAT1B/include/cy_device_headers.h \
  ../mtb_shared/mtb-pdl-cat1/release-v3.17.0/drivers/include/cy_syslib.h \
  ../mtb_shared/core-lib/release-v1.4.4/include/cy_result.h \
- C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/bsps/TARGET_KIT_ESC_DEMO/cybsp.h \
- C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/bsps/TARGET_KIT_ESC_DEMO/cybsp_types.h \
- C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/bsps/TARGET_KIT_ESC_DEMO/cybsp_hw_config.h \
+ C:/Users/bidnerma/Documents/ESC_DSHOT_V2/REF_ESC_48V_80A_FOC-main/bsps/TARGET_KIT_ESC_DEMO/cybsp.h \
+ C:/Users/bidnerma/Documents/ESC_DSHOT_V2/REF_ESC_48V_80A_FOC-main/bsps/TARGET_KIT_ESC_DEMO/cybsp_types.h \
+ C:/Users/bidnerma/Documents/ESC_DSHOT_V2/REF_ESC_48V_80A_FOC-main/bsps/TARGET_KIT_ESC_DEMO/cybsp_hw_config.h \
  bsps/TARGET_KIT_ESC_DEMO/config/GeneratedSource/cycfg_pins.h \
  bsps/TARGET_KIT_ESC_DEMO/config/GeneratedSource/cycfg_notices.h \
  ../mtb_shared/mtb-pdl-cat1/release-v3.17.0/drivers/include/cy_gpio.h \
  bsps/TARGET_KIT_ESC_DEMO/config/GeneratedSource/cycfg_routing.h \
- C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/bsps/TARGET_KIT_ESC_DEMO/cybsp_doc.h \
+ C:/Users/bidnerma/Documents/ESC_DSHOT_V2/REF_ESC_48V_80A_FOC-main/bsps/TARGET_KIT_ESC_DEMO/cybsp_doc.h \
  bsps/TARGET_KIT_ESC_DEMO/config/GeneratedSource/cycfg.h \
  bsps/TARGET_KIT_ESC_DEMO/config/GeneratedSource/cycfg_system.h \
  ../mtb_shared/mtb-pdl-cat1/release-v3.17.0/drivers/include/cy_sysclk.h \
@@ -216,7 +216,7 @@ C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/build/Custom/bsps/KIT_E
  ../mtb_shared/mtb-hal-psc3/release-v1.1.0/include/mtb_hal_uart_common.h \
  bsps/TARGET_KIT_ESC_DEMO/config/GeneratedSource/cycfg_peripherals.h \
  bsps/TARGET_KIT_ESC_DEMO/config/GeneratedSource/cycfg_pins.h
-C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/bsps/TARGET_KIT_ESC_DEMO/cybsp_pm_callbacks.h:
+C:/Users/bidnerma/Documents/ESC_DSHOT_V2/REF_ESC_48V_80A_FOC-main/bsps/TARGET_KIT_ESC_DEMO/cybsp_pm_callbacks.h:
 ../mtb_shared/mtb-pdl-cat1/release-v3.17.0/drivers/include/cy_syspm.h:
 ../mtb_shared/mtb-pdl-cat1/release-v3.17.0/devices/COMPONENT_CAT1B/include/cy_device.h:
 ../mtb_shared/core-lib/release-v1.4.4/include/cy_utils.h:
@@ -268,14 +268,14 @@ bsps/TARGET_KIT_ESC_DEMO/startup_cat1b.h:
 ../mtb_shared/mtb-pdl-cat1/release-v3.17.0/devices/COMPONENT_CAT1B/include/cy_device_headers.h:
 ../mtb_shared/mtb-pdl-cat1/release-v3.17.0/drivers/include/cy_syslib.h:
 ../mtb_shared/core-lib/release-v1.4.4/include/cy_result.h:
-C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/bsps/TARGET_KIT_ESC_DEMO/cybsp.h:
-C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/bsps/TARGET_KIT_ESC_DEMO/cybsp_types.h:
-C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/bsps/TARGET_KIT_ESC_DEMO/cybsp_hw_config.h:
+C:/Users/bidnerma/Documents/ESC_DSHOT_V2/REF_ESC_48V_80A_FOC-main/bsps/TARGET_KIT_ESC_DEMO/cybsp.h:
+C:/Users/bidnerma/Documents/ESC_DSHOT_V2/REF_ESC_48V_80A_FOC-main/bsps/TARGET_KIT_ESC_DEMO/cybsp_types.h:
+C:/Users/bidnerma/Documents/ESC_DSHOT_V2/REF_ESC_48V_80A_FOC-main/bsps/TARGET_KIT_ESC_DEMO/cybsp_hw_config.h:
 bsps/TARGET_KIT_ESC_DEMO/config/GeneratedSource/cycfg_pins.h:
 bsps/TARGET_KIT_ESC_DEMO/config/GeneratedSource/cycfg_notices.h:
 ../mtb_shared/mtb-pdl-cat1/release-v3.17.0/drivers/include/cy_gpio.h:
 bsps/TARGET_KIT_ESC_DEMO/config/GeneratedSource/cycfg_routing.h:
-C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/bsps/TARGET_KIT_ESC_DEMO/cybsp_doc.h:
+C:/Users/bidnerma/Documents/ESC_DSHOT_V2/REF_ESC_48V_80A_FOC-main/bsps/TARGET_KIT_ESC_DEMO/cybsp_doc.h:
 bsps/TARGET_KIT_ESC_DEMO/config/GeneratedSource/cycfg.h:
 bsps/TARGET_KIT_ESC_DEMO/config/GeneratedSource/cycfg_system.h:
 ../mtb_shared/mtb-pdl-cat1/release-v3.17.0/drivers/include/cy_sysclk.h:

@@ -1,5 +1,5 @@
-C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/build/Custom/bsps/KIT_ESC_DEMO/startup_cat1b_cm33.o: \
- C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/bsps/TARGET_KIT_ESC_DEMO/startup_cat1b_cm33.c \
+C:/Users/bidnerma/Documents/ESC_DSHOT_V2/REF_ESC_48V_80A_FOC-main/build/Custom/bsps/KIT_ESC_DEMO/startup_cat1b_cm33.o: \
+ C:/Users/bidnerma/Documents/ESC_DSHOT_V2/REF_ESC_48V_80A_FOC-main/bsps/TARGET_KIT_ESC_DEMO/startup_cat1b_cm33.c \
  ../mtb_shared/mtb-pdl-cat1/release-v3.17.0/devices/COMPONENT_CAT1B/include/cy_device.h \
  ../mtb_shared/core-lib/release-v1.4.4/include/cy_utils.h \
  ../mtb_shared/mtb-pdl-cat1/release-v3.17.0/devices/COMPONENT_CAT1B/include/cy_device_headers.h \
@@ -48,7 +48,7 @@ C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/build/Custom/bsps/KIT_E
  ../mtb_shared/mtb-pdl-cat1/release-v3.17.0/devices/COMPONENT_CAT1B/include/gpio_psc3_vqfn_48.h \
  bsps/TARGET_KIT_ESC_DEMO/startup_cat1b.h \
  ../mtb_shared/mtb-pdl-cat1/release-v3.17.0/devices/COMPONENT_CAT1B/include/cy_device_headers.h \
- C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/bsps/TARGET_KIT_ESC_DEMO/startup_cat1b.h \
+ C:/Users/bidnerma/Documents/ESC_DSHOT_V2/REF_ESC_48V_80A_FOC-main/bsps/TARGET_KIT_ESC_DEMO/startup_cat1b.h \
  ../mtb_shared/mtb-pdl-cat1/release-v3.17.0/drivers/include/cy_syslib.h \
  ../mtb_shared/core-lib/release-v1.4.4/include/cy_result.h \
  ../mtb_shared/cmsis/release-v5.8.2/Core/Include/cmsis_compiler.h \
@@ -102,7 +102,7 @@ bsps/TARGET_KIT_ESC_DEMO/system_cat1b.h:
 ../mtb_shared/mtb-pdl-cat1/release-v3.17.0/devices/COMPONENT_CAT1B/include/gpio_psc3_vqfn_48.h:
 bsps/TARGET_KIT_ESC_DEMO/startup_cat1b.h:
 ../mtb_shared/mtb-pdl-cat1/release-v3.17.0/devices/COMPONENT_CAT1B/include/cy_device_headers.h:
-C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/bsps/TARGET_KIT_ESC_DEMO/startup_cat1b.h:
+C:/Users/bidnerma/Documents/ESC_DSHOT_V2/REF_ESC_48V_80A_FOC-main/bsps/TARGET_KIT_ESC_DEMO/startup_cat1b.h:
 ../mtb_shared/mtb-pdl-cat1/release-v3.17.0/drivers/include/cy_syslib.h:
 ../mtb_shared/core-lib/release-v1.4.4/include/cy_result.h:
 ../mtb_shared/cmsis/release-v5.8.2/Core/Include/cmsis_compiler.h:

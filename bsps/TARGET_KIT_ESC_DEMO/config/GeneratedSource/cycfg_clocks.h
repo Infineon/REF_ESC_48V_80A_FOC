@@ -10,7 +10,7 @@
  * mtb-pdl-cat1 3.17.0.43048
  *
  *******************************************************************************
- * Copyright 2025 Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2026 Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -92,10 +92,28 @@ extern "C" {
 #define CLK_FC_PWM_GRP_NUM CLK_FC_PWM_GRP_NUM
 #endif /* !defined (CLK_FC_PWM_GRP_NUM) */
 
+#define peri_0_group_5_div_8_3_ENABLED 1U
+
+#if defined (CY_USING_HAL) || defined (CY_USING_HAL_LITE)
+#define peri_0_group_5_div_8_3_HW CYHAL_CLOCK_BLOCK_PERIPHERAL5_8BIT
+#endif /* defined (CY_USING_HAL) || defined (CY_USING_HAL_LITE) */
+
+#if !defined (CY_USING_HAL) && !defined (CY_USING_HAL_LITE)
+#define peri_0_group_5_div_8_3_HW CY_SYSCLK_DIV_8_BIT
+#endif /* !defined (CY_USING_HAL) && !defined (CY_USING_HAL_LITE) */
+
+#define peri_0_group_5_div_8_3_NUM 3U
+#define PERI_0_GROUP_5_DIV_8_3_GRP_NUM ((5U << PERI_PCLK_GR_NUM_Pos) | (0U << PERI_PCLK_INST_NUM_Pos))
+
+#if !defined (peri_0_group_5_div_8_3_GRP_NUM)
+#define peri_0_group_5_div_8_3_GRP_NUM PERI_0_GROUP_5_DIV_8_3_GRP_NUM
+#endif /* !defined (peri_0_group_5_div_8_3_GRP_NUM) */
+
 #if defined (CY_USING_HAL)
 extern const cyhal_resource_inst_t CLK_TCPWM_obj;
 extern const cyhal_resource_inst_t CLK_HALL_obj;
 extern const cyhal_resource_inst_t CLK_FC_PWM_obj;
+extern const cyhal_resource_inst_t peri_0_group_5_div_8_3_obj;
 #endif /* defined (CY_USING_HAL) */
 
 void init_cycfg_clocks(void);

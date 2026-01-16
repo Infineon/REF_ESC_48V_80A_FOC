@@ -10,7 +10,7 @@
  * mtb-pdl-cat1 3.17.0.43048
  *
  *******************************************************************************
- * Copyright 2025 Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2026 Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -121,6 +121,11 @@ extern "C" {
 #define FC_PWM_COUNTER_ENABLED 1U
 #define FC_PWM_COUNTER_HW TCPWM0
 #define FC_PWM_COUNTER_NUM 261UL
+#define FC_PWM_COUNTER_IRQ tcpwm_0_interrupts_261_IRQn
+#define START_SIGNAL_COUNTER_ENABLED 1U
+#define START_SIGNAL_COUNTER_HW TCPWM0
+#define START_SIGNAL_COUNTER_NUM 262UL
+#define START_SIGNAL_COUNTER_IRQ tcpwm_0_interrupts_262_IRQn
 
 extern const cy_stc_hppass_cfg_t pass_0_config;
 
@@ -345,6 +350,29 @@ extern const mtb_hal_clock_t FC_PWM_COUNTER_hal_clock;
 
 #if defined (COMPONENT_MTB_HAL) && (MTB_HAL_DRIVER_AVAILABLE_TIMER)
 extern const mtb_hal_timer_configurator_t FC_PWM_COUNTER_hal_config;
+#endif /* defined (COMPONENT_MTB_HAL) && (MTB_HAL_DRIVER_AVAILABLE_TIMER) */
+
+extern const cy_stc_tcpwm_counter_config_t START_SIGNAL_COUNTER_config;
+
+#if defined (CY_USING_HAL) || defined(CY_USING_HAL_LITE)
+extern const cyhal_resource_inst_t START_SIGNAL_COUNTER_obj;
+#endif /* defined (CY_USING_HAL) || defined(CY_USING_HAL_LITE) */
+
+#if defined(CY_USING_HAL_LITE) || defined (CY_USING_HAL)
+extern const cyhal_clock_t START_SIGNAL_COUNTER_clock;
+#endif /* defined(CY_USING_HAL_LITE) || defined (CY_USING_HAL) */
+
+#if defined (CY_USING_HAL) || defined(CY_USING_HAL_LITE)
+extern const cyhal_timer_configurator_t START_SIGNAL_COUNTER_hal_config;
+#endif /* defined (CY_USING_HAL) || defined(CY_USING_HAL_LITE) */
+
+#if defined (COMPONENT_MTB_HAL)
+extern const mtb_hal_peri_div_t START_SIGNAL_COUNTER_clock_ref;
+extern const mtb_hal_clock_t START_SIGNAL_COUNTER_hal_clock;
+#endif /* defined (COMPONENT_MTB_HAL) */
+
+#if defined (COMPONENT_MTB_HAL) && (MTB_HAL_DRIVER_AVAILABLE_TIMER)
+extern const mtb_hal_timer_configurator_t START_SIGNAL_COUNTER_hal_config;
 #endif /* defined (COMPONENT_MTB_HAL) && (MTB_HAL_DRIVER_AVAILABLE_TIMER) */
 
 void pass_0_start(void);

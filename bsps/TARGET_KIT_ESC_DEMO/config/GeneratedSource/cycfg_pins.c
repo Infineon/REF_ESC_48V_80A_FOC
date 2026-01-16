@@ -10,7 +10,7 @@
  * mtb-pdl-cat1 3.17.0.43048
  *
  *******************************************************************************
- * Copyright 2025 Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2026 Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -274,8 +274,8 @@ const cyhal_resource_inst_t PWMWL_obj =
 
 const cy_stc_gpio_pin_config_t FC_PWM_config =
 {
-    .outVal = 1,
-    .driveMode = CY_GPIO_DM_HIGHZ,
+    .outVal = 0,
+    .driveMode = CY_GPIO_DM_PULLDOWN,
     .hsiom = FC_PWM_HSIOM,
     .intEdge = CY_GPIO_INTR_DISABLE,
     .intMask = 0UL,

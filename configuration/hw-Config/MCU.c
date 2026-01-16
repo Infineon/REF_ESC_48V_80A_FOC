@@ -38,10 +38,18 @@
 #include "probe_scope.h"
 #include "ParamConfig.h"
 
-uint32_t capture0;
-uint32_t capture1;
-float delta_capture; 
+/* Defines the Interrupt flag for counter overflow case */
+static volatile bool start_signal_flag = false;
 
+
+ /* Variables defined to get captured timer value on input signal rising and falling edge */
+volatile uint16_t capture_rising = 0;
+volatile uint16_t capture_falling = 0;
+volatile uint16_t durations [16] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+volatile uint16_t values = 0;
+volatile float speed = 0.0f;
+volatile uint16_t xor = 0; 
+uint16_t count = 0;
 MCU_t mcu[MOTOR_CTRL_NO_OF_MOTOR];
 
 // PSOC6.....CAT1A
@@ -422,45 +430,22 @@ void MCU_RunISR0()
 }
 RAMFUNC_END
 
-
-
-
-
 void MCU_RunISR1()
 {
-#if defined(COMPONENT_CAT1)
-    Cy_TCPWM_ClearInterrupt(SYNC_ISR1_HW, SYNC_ISR1_NUM, SYNC_ISR1_config.interruptSources);
-#elif defined(COMPONENT_CAT3)
-    XMC_CCU8_SLICE_ClearEvent((XMC_CCU8_SLICE_t*) SYNC_ISR1_HW, XMC_CCU8_SLICE_IRQ_ID_COMPARE_MATCH_UP_CH_1);
-#endif
+	#if defined(COMPONENT_CAT1)
+	    Cy_TCPWM_ClearInterrupt(SYNC_ISR1_HW, SYNC_ISR1_NUM, SYNC_ISR1_config.interruptSources);
+	#elif defined(COMPONENT_CAT3)
+	    XMC_CCU8_SLICE_ClearEvent((XMC_CCU8_SLICE_t*) SYNC_ISR1_HW, XMC_CCU8_SLICE_IRQ_ID_COMPARE_MATCH_UP_CH_1);
+	#endif
+	
 
     motor[0].faults_ptr->react_mask[High_Z].hw.cs_ocp = 0b0;
-
-	capture0 = Cy_TCPWM_Counter_GetCapture0Val(FC_PWM_COUNTER_HW, FC_PWM_COUNTER_NUM);
-	capture1 = Cy_TCPWM_Counter_GetCapture1Val(FC_PWM_COUNTER_HW, FC_PWM_COUNTER_NUM);
-	
-	delta_capture = (float)capture1 - (float)capture0;
-	
-	/*
-	if (delta_capture >= 0.0f)
-	{
-		if (delta_capture < 10000.0f)
-		{
-			vars[0].cmd_ext = 0.0f; 
-		}
-	
-		if ((delta_capture >= 10000.0f) && (delta_capture < 20000.0f))
-		{
-			vars[0].cmd_ext = ((float)delta_capture - 10000.0f) / 10000.0f; 
-		}
-	}
-    */
+    
     NVIC_ClearPendingIRQ(mcu[0].interrupt.nvic_sync_isr1);
     MCU_StartTimeCap(&mcu[0].isr1_exe);
     if(mcu[0].isr1.count++ == 1U) {MCU_DisableTimerReload();}
     // Smart gate driver
 
-	
 	
 #if defined (N_FAULT_HW_PORT)
 #if defined(COMPONENT_CAT1)
@@ -523,12 +508,73 @@ void MCU_RunISR1()
 #endif
 }
 
+// ISR to capure DSHOT signal and calc. checksum after 16 captured bits
+#if defined(FC_PWM_COUNTER_HW)
+static void FC_PWM_COUNTER_IRQ_RunISR()
+{
+	Cy_TCPWM_ClearInterrupt(FC_PWM_COUNTER_HW,FC_PWM_COUNTER_NUM, FC_PWM_COUNTER_config.interruptSources);
+	Cy_TCPWM_Counter_SetCounter(TCPWM0, START_SIGNAL_COUNTER_NUM, 0UL);
+		if(start_signal_flag){
+	   		/* Get captured timer value on input signal rising edge */
+	        capture_rising = Cy_TCPWM_Counter_GetCapture0Val(FC_PWM_COUNTER_HW, FC_PWM_COUNTER_NUM);
+	        capture_falling = Cy_TCPWM_Counter_GetCapture1Val(FC_PWM_COUNTER_HW, FC_PWM_COUNTER_NUM);
+	        if(capture_falling > capture_rising)
+	        {
+				durations[count++] = capture_falling - capture_rising;
+			}
+			else
+			{
+				durations[count++] = 65535 + capture_falling - capture_rising;
+			}
+	
+	    /* If a full frame is read, do the calculations */
+		/* Reset the counter for the duration array */
+		if (count == 16){
+			count = 0;
+			values = 0x0;
+			/* If value > threshold -> 1
+			 * Binary values stored in values */
+		    for(int i = 0; i < 16; i++)
+		    {
+		    	if(durations[i] >= 222)
+		        {
+		        	values |=  (1u << (15-i));
+		        }
+		    }
+		    
+		    /* Checksum Calculation: XOR of bits 4-7 ^ 8-11 ^ 12-15*/
+			xor = (uint16_t)(((values >> 4) ^ (values >> 8) ^ (values >> 12)) & 0x000Fu);
+		    /* Comparison with send checksum */
+		    if((values & 0xFu) == xor)
+		    {
+		    	 /*Transmission to motor control software and scaling of [48, 2047] to [0, 1]*/
+		    	speed = (float) (((values >> 5) - 48) / 2000.0);
+		    	if (speed < 0.0)
+		    	{
+					vars[0].cmd_ext = 0.0;
+				}
+				else 
+				{
+					vars[0].cmd_ext = speed;
+				}
+		    }
+			start_signal_flag = false;
+	 	}
+	}
+}
+#endif
 
-
-
-
-
-
+// ISR to find starting point of DSHOT signal
+#if defined(START_SIGNAL_COUNTER_HW)
+static void START_SIGNAL_COUNTER_IRQ_RunISR()
+{	
+	Cy_TCPWM_ClearInterrupt(START_SIGNAL_COUNTER_HW, START_SIGNAL_COUNTER_NUM, START_SIGNAL_COUNTER_config.interruptSources);
+	if(!start_signal_flag)
+	{
+		start_signal_flag = true;
+	}
+}
+#endif
 
 #if defined(COMPONENT_CAT1)
 RAMFUNC_BEGIN
@@ -658,10 +704,20 @@ void MCU_InitChipInfo()
 
 void MCU_InitInterrupts()
 {
-    // Interrupt callbacks and priorities (higher value = lower urgency) .......
+// Interrupt callbacks and priorities (higher value = lower urgency) .......
+#if defined(FC_PWM_COUNTER_HW)
+	// FC_PWM_COUNTER_IRGQ
+	 cy_stc_sysint_t FC_PWM_COUNTER_IRQ_cfg = { .intrSrc = FC_PWM_COUNTER_IRQ, .intrPriority = 0 };
+     Cy_SysInt_Init(&FC_PWM_COUNTER_IRQ_cfg, FC_PWM_COUNTER_IRQ_RunISR);
+#endif
+#if defined(START_SIGNAL_COUNTER_HW)
+	// START_SIGNAL_COUNTER_IRGQ
+	 cy_stc_sysint_t START_SIGNAL_COUNTER_IRQ_cfg = { .intrSrc = START_SIGNAL_COUNTER_IRQ, .intrPriority = 0 };
+     Cy_SysInt_Init(&START_SIGNAL_COUNTER_IRQ_cfg, START_SIGNAL_COUNTER_IRQ_RunISR);
+#endif
 #if defined(COMPONENT_CAT1)
     // DMA_ADC_0:
-    cy_stc_sysint_t DMA_ADC_0_cfg = { .intrSrc = DMA_ADC_0_IRQ, .intrPriority = 0 };
+    cy_stc_sysint_t DMA_ADC_0_cfg = { .intrSrc = DMA_ADC_0_IRQ, .intrPriority = 1 };
     Cy_SysInt_Init(&DMA_ADC_0_cfg, DMA_ADC_0_RunISR);
     // DMA_ADC_1:
    // cy_stc_sysint_t DMA_ADC_1_cfg = { .intrSrc = DMA_ADC_1_IRQ, .intrPriority = 0 };
@@ -687,6 +743,8 @@ void MCU_InitInterrupts()
     mcu[0].interrupt.nvic_dma_adc_0 = DMA_ADC_0_IRQ;
   //  mcu[0].interrupt.nvic_dma_adc_1 = DMA_ADC_1_IRQ;
     mcu[0].interrupt.nvic_sync_isr1 = SYNC_ISR1_IRQ;
+    mcu[0].interrupt.nvic_fc_pwm_counter = FC_PWM_COUNTER_IRQ;
+    mcu[0].interrupt.nvic_start_signal_counter = START_SIGNAL_COUNTER_IRQ;
 #elif defined(COMPONENT_CAT1C)
     mcu[0].interrupt.nvic_dma_adc_0 = Cy_SysInt_GetNvicConnection(DMA_ADC_0_IRQ);
     mcu[0].interrupt.nvic_dma_adc_1 = Cy_SysInt_GetNvicConnection(DMA_ADC_1_IRQ);
@@ -897,6 +955,7 @@ void MCU_InitTimers()
     Cy_TCPWM_PWM_SetCompare0Val(SYNC_ISR1_HW, SYNC_ISR1_NUM, cc0);
         
     Cy_TCPWM_Counter_Init(FC_PWM_COUNTER_HW, FC_PWM_COUNTER_NUM, &FC_PWM_COUNTER_config);
+    Cy_TCPWM_Counter_Init(START_SIGNAL_COUNTER_HW, START_SIGNAL_COUNTER_NUM, &START_SIGNAL_COUNTER_config);
     
 
 #if defined(CTRL_METHOD_RFO) || defined(CTRL_METHOD_TBC)
@@ -988,6 +1047,8 @@ void MCU_StartPeripherals()
     Cy_DMA_Enable(DMA_ADC_2_HW);    
 #endif    
     NVIC_EnableIRQ(mcu[0].interrupt.nvic_sync_isr1);
+    NVIC_EnableIRQ(mcu[0].interrupt.nvic_fc_pwm_counter);
+    NVIC_EnableIRQ(mcu[0].interrupt.nvic_start_signal_counter);
 
 #elif defined(COMPONENT_CAT3)
     NVIC_EnableIRQ(mcu[0].interrupt.nvic_dma_adc_0);
@@ -1031,8 +1092,9 @@ void MCU_StartPeripherals()
     
     
     Cy_TCPWM_Counter_Enable(FC_PWM_COUNTER_HW, FC_PWM_COUNTER_NUM);
+    Cy_TCPWM_Counter_Enable(START_SIGNAL_COUNTER_HW, START_SIGNAL_COUNTER_NUM);
     Cy_TCPWM_TriggerStart_Single(FC_PWM_COUNTER_HW, FC_PWM_COUNTER_NUM);
-    
+    Cy_TCPWM_TriggerStart_Single(START_SIGNAL_COUNTER_HW, START_SIGNAL_COUNTER_NUM);
     
     MCU_EnableTimerReload();
     Cy_TCPWM_TriggerStart_Single(SYNC_ISR1_HW, SYNC_ISR1_NUM); // Start ISR1 which will also start U,V,W
@@ -1124,6 +1186,7 @@ void MCU_StopPeripherals()
     Cy_TCPWM_PWM_Disable(ADC0_ISR0_HW, ADC0_ISR0_NUM);
     
     Cy_TCPWM_Counter_Disable(FC_PWM_COUNTER_HW, FC_PWM_COUNTER_NUM);
+    Cy_TCPWM_Counter_Disable(START_SIGNAL_COUNTER_HW, START_SIGNAL_COUNTER_NUM);
 
 #elif defined(COMPONENT_CAT3)
     XMC_CCU4_SLICE_StopClearTimer(EXE_TIMER_L_HW);
@@ -1165,6 +1228,8 @@ void MCU_StopPeripherals()
 
 #if defined(COMPONENT_CAT1)
     NVIC_DisableIRQ(mcu[0].interrupt.nvic_sync_isr1);
+    NVIC_DisableIRQ(mcu[0].interrupt.nvic_fc_pwm_counter);
+    NVIC_DisableIRQ(mcu[0].interrupt.nvic_start_signal_counter);
 #if defined(DMA_ADC_2_HW)
     Cy_DMA_Disable(DMA_ADC_2_HW);
     NVIC_DisableIRQ(mcu[0].interrupt.nvic_dma_adc_2);

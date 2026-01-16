@@ -1,5 +1,5 @@
-C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/build/Custom/libraries_shared/mtb-hal-psc3/source/mtb_hal_lptimer.o: \
- C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/mtb_shared/mtb-hal-psc3/release-v1.1.0/source/mtb_hal_lptimer.c \
+C:/Users/bidnerma/Documents/ESC_DSHOT_V2/REF_ESC_48V_80A_FOC-main/build/Custom/libraries_shared/mtb-hal-psc3/source/mtb_hal_lptimer.o: \
+ C:/Users/bidnerma/Documents/ESC_DSHOT_V2/mtb_shared/mtb-hal-psc3/release-v1.1.0/source/mtb_hal_lptimer.c \
  ../mtb_shared/cmsis/release-v5.8.2/Core/Include/cmsis_compiler.h \
  ../mtb_shared/cmsis/release-v5.8.2/Core/Include/cmsis_gcc.h \
  ../mtb_shared/mtb-pdl-cat1/release-v3.17.0/drivers/include/cy_syslib.h \

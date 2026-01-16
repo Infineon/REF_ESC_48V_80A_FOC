@@ -10,7 +10,7 @@
  * mtb-pdl-cat1 3.17.0.43048
  *
  *******************************************************************************
- * Copyright 2025 Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2026 Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -240,8 +240,8 @@ extern "C" {
 #define FC_PWM_PORT_NUM 7U
 #define FC_PWM_PIN 2U
 #define FC_PWM_NUM 2U
-#define FC_PWM_DRIVEMODE CY_GPIO_DM_HIGHZ
-#define FC_PWM_INIT_DRIVESTATE 1
+#define FC_PWM_DRIVEMODE CY_GPIO_DM_PULLDOWN
+#define FC_PWM_INIT_DRIVESTATE 0
 #ifndef ioss_0_port_7_pin_2_HSIOM
     #define ioss_0_port_7_pin_2_HSIOM HSIOM_SEL_GPIO
 #endif
@@ -252,8 +252,8 @@ extern "C" {
 #define FC_PWM_HAL_PORT_PIN P7_2
 #define FC_PWM P7_2
 #define FC_PWM_HAL_IRQ CYHAL_GPIO_IRQ_NONE
-#define FC_PWM_HAL_DIR CYHAL_GPIO_DIR_INPUT 
-#define FC_PWM_HAL_DRIVEMODE CYHAL_GPIO_DRIVE_NONE
+#define FC_PWM_HAL_DIR CYHAL_GPIO_DIR_BIDIRECTIONAL 
+#define FC_PWM_HAL_DRIVEMODE CYHAL_GPIO_DRIVE_PULLDOWN
 #endif /* defined (CY_USING_HAL) || (CY_USING_HAL_LITE) */
 
 #define N_FAULT_HW_ENABLED 1U

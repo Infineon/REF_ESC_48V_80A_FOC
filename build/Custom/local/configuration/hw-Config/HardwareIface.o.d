@@ -1,7 +1,7 @@
-C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/build/Custom/local/configuration/hw-Config/HardwareIface.o: \
- C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/configuration/hw-Config/HardwareIface.c \
- C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/configuration/hw-Config/HardwareIface.h \
- C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/configuration/hw-Config/MCU.h \
+C:/Users/bidnerma/Documents/ESC_DSHOT_V2/REF_ESC_48V_80A_FOC-main/build/Custom/local/configuration/hw-Config/HardwareIface.o: \
+ C:/Users/bidnerma/Documents/ESC_DSHOT_V2/REF_ESC_48V_80A_FOC-main/configuration/hw-Config/HardwareIface.c \
+ C:/Users/bidnerma/Documents/ESC_DSHOT_V2/REF_ESC_48V_80A_FOC-main/configuration/hw-Config/HardwareIface.h \
+ C:/Users/bidnerma/Documents/ESC_DSHOT_V2/REF_ESC_48V_80A_FOC-main/configuration/hw-Config/MCU.h \
  ../mtb_shared/emeeprom/release-v2.60.0/include/cy_em_eeprom.h \
  ../mtb_shared/mtb-pdl-cat1/release-v3.17.0/devices/COMPONENT_CAT1B/include/cy_device_headers.h \
  ../mtb_shared/mtb-pdl-cat1/release-v3.17.0/devices/COMPONENT_CAT1B/include/psc3m5fds2lgq1_s.h \
@@ -234,7 +234,7 @@ C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/build/Custom/local/conf
  ../mtb_shared/motor-ctrl-lib/release-v3.0.0/OperationalCode/SixPulseInj.h \
  ../mtb_shared/motor-ctrl-lib/release-v3.0.0/OperationalCode/PhaseAdvance.h \
  ../mtb_shared/motor-ctrl-lib/release-v3.0.0/OperationalCode/CurrentCtrl.h \
- C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/configuration/hw-Config/MotorCtrlHWConfig.h \
+ C:/Users/bidnerma/Documents/ESC_DSHOT_V2/REF_ESC_48V_80A_FOC-main/configuration/hw-Config/MotorCtrlHWConfig.h \
  bsps/TARGET_KIT_ESC_DEMO/cybsp.h bsps/TARGET_KIT_ESC_DEMO/cybsp_types.h \
  bsps/TARGET_KIT_ESC_DEMO/cybsp_hw_config.h \
  bsps/TARGET_KIT_ESC_DEMO/config/GeneratedSource/cycfg_pins.h \
@@ -246,8 +246,8 @@ C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/build/Custom/local/conf
  bsps/TARGET_KIT_ESC_DEMO/config/GeneratedSource/cycfg_dmas.h \
  bsps/TARGET_KIT_ESC_DEMO/config/GeneratedSource/cycfg_peripherals.h \
  bsps/TARGET_KIT_ESC_DEMO/config/GeneratedSource/cycfg_pins.h
-C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/configuration/hw-Config/HardwareIface.h:
-C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/configuration/hw-Config/MCU.h:
+C:/Users/bidnerma/Documents/ESC_DSHOT_V2/REF_ESC_48V_80A_FOC-main/configuration/hw-Config/HardwareIface.h:
+C:/Users/bidnerma/Documents/ESC_DSHOT_V2/REF_ESC_48V_80A_FOC-main/configuration/hw-Config/MCU.h:
 ../mtb_shared/emeeprom/release-v2.60.0/include/cy_em_eeprom.h:
 ../mtb_shared/mtb-pdl-cat1/release-v3.17.0/devices/COMPONENT_CAT1B/include/cy_device_headers.h:
 ../mtb_shared/mtb-pdl-cat1/release-v3.17.0/devices/COMPONENT_CAT1B/include/psc3m5fds2lgq1_s.h:
@@ -480,7 +480,7 @@ bsps/TARGET_KIT_ESC_DEMO/config/GeneratedSource/cycfg_notices.h:
 ../mtb_shared/motor-ctrl-lib/release-v3.0.0/OperationalCode/SixPulseInj.h:
 ../mtb_shared/motor-ctrl-lib/release-v3.0.0/OperationalCode/PhaseAdvance.h:
 ../mtb_shared/motor-ctrl-lib/release-v3.0.0/OperationalCode/CurrentCtrl.h:
-C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/configuration/hw-Config/MotorCtrlHWConfig.h:
+C:/Users/bidnerma/Documents/ESC_DSHOT_V2/REF_ESC_48V_80A_FOC-main/configuration/hw-Config/MotorCtrlHWConfig.h:
 bsps/TARGET_KIT_ESC_DEMO/cybsp.h:
 bsps/TARGET_KIT_ESC_DEMO/cybsp_types.h:
 bsps/TARGET_KIT_ESC_DEMO/cybsp_hw_config.h:

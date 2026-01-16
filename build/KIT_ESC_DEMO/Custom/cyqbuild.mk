@@ -6,6 +6,7 @@ CY_SEARCH_ALL_FILES:= \
 	.mtbqueryapi \
 	.ninja_log \
 	.project \
+	library-manager.log \
 	LICENSE \
 	main.c \
 	Makefile \
@@ -32,6 +33,7 @@ CY_SEARCH_ALL_FILES:= \
 	bsps/TARGET_KIT_ESC_DEMO/system_cat1b.h \
 	bsps/TARGET_KIT_ESC_DEMO/system_psc3.c \
 	bsps/TARGET_KIT_ESC_DEMO/config/design.modus \
+	bsps/TARGET_KIT_ESC_DEMO/config/design.modus.lock \
 	bsps/TARGET_KIT_ESC_DEMO/config/GeneratedSource/.hardware-config-server.generated-files \
 	bsps/TARGET_KIT_ESC_DEMO/config/GeneratedSource/cycfg.c \
 	bsps/TARGET_KIT_ESC_DEMO/config/GeneratedSource/cycfg.h \

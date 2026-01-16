@@ -10,7 +10,7 @@
  * mtb-pdl-cat1 3.17.0.43048
  *
  *******************************************************************************
- * Copyright 2025 Cypress Semiconductor Corporation (an Infineon company) or
+ * Copyright 2026 Cypress Semiconductor Corporation (an Infineon company) or
  * an affiliate of Cypress Semiconductor Corporation.
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -38,6 +38,7 @@
 #define PWM_SYNC_INPUT_DISABLED 0x7U
 #define ADC0_ISR0_INPUT_DISABLED 0x7U
 #define FC_PWM_COUNTER_INPUT_DISABLED 0x7U
+#define START_SIGNAL_COUNTER_INPUT_DISABLED 0x7U
 
 const cy_stc_hppass_cfg_t pass_0_config =
 {
@@ -1294,7 +1295,7 @@ const cyhal_pwm_configurator_t ADC0_ISR0_hal_config =
 
 const cy_stc_tcpwm_counter_config_t FC_PWM_COUNTER_config =
 {
-    .period = 40000,
+    .period = 65535,
     .clockPrescaler = CY_TCPWM_COUNTER_PRESCALER_DIVBY_1,
     .runMode = CY_TCPWM_COUNTER_CONTINUOUS,
     .countDirection = CY_TCPWM_COUNTER_COUNT_UP,
@@ -1302,7 +1303,7 @@ const cy_stc_tcpwm_counter_config_t FC_PWM_COUNTER_config =
     .compare0 = 16384,
     .compare1 = 16384,
     .enableCompareSwap = false,
-    .interruptSources = (CY_TCPWM_INT_ON_TC & 0U) | (CY_TCPWM_INT_ON_CC0 & 0U) | (CY_TCPWM_INT_ON_CC1 & 0U),
+    .interruptSources = (CY_TCPWM_INT_ON_TC & 0U) | (CY_TCPWM_INT_ON_CC0 & 0U) | (CY_TCPWM_INT_ON_CC1 ),
     .captureInputMode = CY_TCPWM_INPUT_RISINGEDGE,
     .captureInput = TCPWM0_GRP1_CNT5_CAPTURE0_VALUE,
     .reloadInputMode = FC_PWM_COUNTER_INPUT_DISABLED & 0x3U,
@@ -1381,6 +1382,95 @@ const mtb_hal_timer_configurator_t FC_PWM_COUNTER_hal_config =
 };
 #endif /* defined (COMPONENT_MTB_HAL) && (MTB_HAL_DRIVER_AVAILABLE_TIMER) */
 
+const cy_stc_tcpwm_counter_config_t START_SIGNAL_COUNTER_config =
+{
+    .period = 24000,
+    .clockPrescaler = CY_TCPWM_COUNTER_PRESCALER_DIVBY_1,
+    .runMode = CY_TCPWM_COUNTER_CONTINUOUS,
+    .countDirection = CY_TCPWM_COUNTER_COUNT_UP,
+    .compareOrCapture = CY_TCPWM_COUNTER_MODE_CAPTURE,
+    .compare0 = 16384,
+    .compare1 = 16384,
+    .enableCompareSwap = false,
+    .interruptSources = (CY_TCPWM_INT_ON_TC ) | (CY_TCPWM_INT_ON_CC0 & 0U) | (CY_TCPWM_INT_ON_CC1 & 0U),
+    .captureInputMode = START_SIGNAL_COUNTER_INPUT_DISABLED & 0x3U,
+    .captureInput = CY_TCPWM_INPUT_0,
+    .reloadInputMode = START_SIGNAL_COUNTER_INPUT_DISABLED & 0x3U,
+    .reloadInput = CY_TCPWM_INPUT_0,
+    .startInputMode = START_SIGNAL_COUNTER_INPUT_DISABLED & 0x3U,
+    .startInput = CY_TCPWM_INPUT_0,
+    .stopInputMode = START_SIGNAL_COUNTER_INPUT_DISABLED & 0x3U,
+    .stopInput = CY_TCPWM_INPUT_0,
+    .countInputMode = START_SIGNAL_COUNTER_INPUT_DISABLED & 0x3U,
+    .countInput = CY_TCPWM_INPUT_1,
+    .capture1InputMode = START_SIGNAL_COUNTER_INPUT_DISABLED & 0x3U,
+    .capture1Input = CY_TCPWM_INPUT_0,
+    .compare2 = 16384,
+    .compare3 = 16384,
+    .enableCompare1Swap = false,
+    .trigger0Event = CY_TCPWM_CNT_TRIGGER_ON_DISABLED,
+    .trigger1Event = CY_TCPWM_CNT_TRIGGER_ON_DISABLED,
+#if defined (CY_IP_MXS40TCPWM)
+    .buffer_swap_enable = false,
+    .direction_mode = CY_TCPWM_COUNTER_DIRECTION_DISABLE,
+    .glitch_filter_enable = false,
+    .gf_depth = CY_GLITCH_FILTER_DEPTH_SUPPORT_VALUE_0,
+#endif /* defined (CY_IP_MXS40TCPWM) */
+};
+
+#if defined (CY_USING_HAL) || defined(CY_USING_HAL_LITE)
+const cyhal_resource_inst_t START_SIGNAL_COUNTER_obj =
+{
+    .type = CYHAL_RSC_TCPWM,
+    .block_num = 1U,
+    .channel_num = 6U,
+};
+#endif /* defined (CY_USING_HAL) || defined(CY_USING_HAL_LITE) */
+
+#if defined(CY_USING_HAL_LITE) || defined (CY_USING_HAL)
+const cyhal_clock_t START_SIGNAL_COUNTER_clock =
+{
+    .block = CYHAL_CLOCK_BLOCK_PERIPHERAL5_8BIT,
+    .channel = 3,
+#if defined (CY_USING_HAL)
+    .reserved = false,
+    .funcs = NULL,
+#endif /* defined (CY_USING_HAL) */
+};
+#endif /* defined(CY_USING_HAL_LITE) || defined (CY_USING_HAL) */
+
+#if defined (CY_USING_HAL) || defined(CY_USING_HAL_LITE)
+const cyhal_timer_configurator_t START_SIGNAL_COUNTER_hal_config =
+{
+    .resource = &START_SIGNAL_COUNTER_obj,
+    .config = &START_SIGNAL_COUNTER_config,
+    .clock = &START_SIGNAL_COUNTER_clock,
+};
+#endif /* defined (CY_USING_HAL) || defined(CY_USING_HAL_LITE) */
+
+#if defined (COMPONENT_MTB_HAL)
+const mtb_hal_peri_div_t START_SIGNAL_COUNTER_clock_ref =
+{
+    .clk_dst = (en_clk_dst_t)PCLK_TCPWM0_CLOCK_COUNTER_EN262,
+    .div_type = CY_SYSCLK_DIV_8_BIT,
+    .div_num = 3,
+};
+const mtb_hal_clock_t START_SIGNAL_COUNTER_hal_clock =
+{
+    .clock_ref = &START_SIGNAL_COUNTER_clock_ref,
+    .interface = &mtb_hal_clock_peri_interface,
+};
+#endif /* defined (COMPONENT_MTB_HAL) */
+
+#if defined (COMPONENT_MTB_HAL) && (MTB_HAL_DRIVER_AVAILABLE_TIMER)
+const mtb_hal_timer_configurator_t START_SIGNAL_COUNTER_hal_config =
+{
+    .tcpwm_base = START_SIGNAL_COUNTER_HW,
+    .clock = &START_SIGNAL_COUNTER_hal_clock,
+    .tcpwm_cntnum = 262U,
+};
+#endif /* defined (COMPONENT_MTB_HAL) && (MTB_HAL_DRIVER_AVAILABLE_TIMER) */
+
 __WEAK void __NO_RETURN pass_0_error(cy_rslt_t error);
 
 __WEAK void __NO_RETURN pass_0_error(cy_rslt_t error)
@@ -1448,6 +1538,10 @@ void init_cycfg_peripherals(void)
     Cy_SysClk_PeriGroupSlaveInit(CY_MMIO_TCPWM0_PERI_NR, CY_MMIO_TCPWM0_GROUP_NR, CY_MMIO_TCPWM0_SLAVE_NR, CY_MMIO_TCPWM0_CLK_HF_NR);
 #endif /* defined (CY_DEVICE_CONFIGURATOR_IP_ENABLE_FEATURE) */
     Cy_SysClk_PeriphAssignDivider(PCLK_TCPWM0_CLOCK_COUNTER_EN261, CY_SYSCLK_DIV_8_BIT, 2U);
+#if defined (CY_DEVICE_CONFIGURATOR_IP_ENABLE_FEATURE)
+    Cy_SysClk_PeriGroupSlaveInit(CY_MMIO_TCPWM0_PERI_NR, CY_MMIO_TCPWM0_GROUP_NR, CY_MMIO_TCPWM0_SLAVE_NR, CY_MMIO_TCPWM0_CLK_HF_NR);
+#endif /* defined (CY_DEVICE_CONFIGURATOR_IP_ENABLE_FEATURE) */
+    Cy_SysClk_PeriphAssignDivider(PCLK_TCPWM0_CLOCK_COUNTER_EN262, CY_SYSCLK_DIV_8_BIT, 3U);
 }
 void reserve_cycfg_peripherals(void)
 {
@@ -1461,5 +1555,6 @@ void reserve_cycfg_peripherals(void)
     cyhal_hwmgr_reserve(&PWM_SYNC_obj);
     cyhal_hwmgr_reserve(&ADC0_ISR0_obj);
     cyhal_hwmgr_reserve(&FC_PWM_COUNTER_obj);
+    cyhal_hwmgr_reserve(&START_SIGNAL_COUNTER_obj);
 #endif /* defined (CY_USING_HAL) */
 }

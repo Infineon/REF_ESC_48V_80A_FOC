@@ -1,5 +1,5 @@
-C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/build/Custom/libraries_shared/block-storage/source/mtb_block_storage_nvm.o: \
- C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/mtb_shared/block-storage/release-v1.3.1/source/mtb_block_storage_nvm.c \
+C:/Users/bidnerma/Documents/ESC_DSHOT_V2/REF_ESC_48V_80A_FOC-main/build/Custom/libraries_shared/block-storage/source/mtb_block_storage_nvm.o: \
+ C:/Users/bidnerma/Documents/ESC_DSHOT_V2/mtb_shared/block-storage/release-v1.3.1/source/mtb_block_storage_nvm.c \
  ../mtb_shared/block-storage/release-v1.3.1/include/mtb_block_storage.h \
  ../mtb_shared/core-lib/release-v1.4.4/include/cy_result.h \
  ../mtb_shared/mtb-hal-psc3/release-v1.1.0/include/mtb_hal.h \

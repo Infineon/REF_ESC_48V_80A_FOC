@@ -1,6 +1,6 @@
-C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/build/Custom/local/configuration/hw-Config/MotorCtrlHWConfig.o: \
- C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/configuration/hw-Config/MotorCtrlHWConfig.c \
- C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/configuration/hw-Config/MotorCtrlHWConfig.h \
+C:/Users/bidnerma/Documents/ESC_DSHOT_V2/REF_ESC_48V_80A_FOC-main/build/Custom/local/configuration/hw-Config/MotorCtrlHWConfig.o: \
+ C:/Users/bidnerma/Documents/ESC_DSHOT_V2/REF_ESC_48V_80A_FOC-main/configuration/hw-Config/MotorCtrlHWConfig.c \
+ C:/Users/bidnerma/Documents/ESC_DSHOT_V2/REF_ESC_48V_80A_FOC-main/configuration/hw-Config/MotorCtrlHWConfig.h \
  bsps/TARGET_KIT_ESC_DEMO/cybsp.h \
  ../mtb_shared/core-lib/release-v1.4.4/include/cy_result.h \
  bsps/TARGET_KIT_ESC_DEMO/cybsp_types.h \
@@ -217,7 +217,7 @@ C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/build/Custom/local/conf
  bsps/TARGET_KIT_ESC_DEMO/config/GeneratedSource/cycfg_peripherals.h \
  bsps/TARGET_KIT_ESC_DEMO/config/GeneratedSource/cycfg_pins.h \
  ../mtb_shared/motor-ctrl-lib/release-v3.0.0/OperationalCode/General.h
-C:/Users/SchoeffmannC/mtw/KIT_ESC_DEMO_MCTRL_V3/ESC_DEMO/configuration/hw-Config/MotorCtrlHWConfig.h:
+C:/Users/bidnerma/Documents/ESC_DSHOT_V2/REF_ESC_48V_80A_FOC-main/configuration/hw-Config/MotorCtrlHWConfig.h:
 bsps/TARGET_KIT_ESC_DEMO/cybsp.h:
 ../mtb_shared/core-lib/release-v1.4.4/include/cy_result.h:
 bsps/TARGET_KIT_ESC_DEMO/cybsp_types.h:

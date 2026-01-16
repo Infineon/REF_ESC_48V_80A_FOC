@@ -109,6 +109,8 @@ typedef struct
     IRQn_Type nvic_dma_adc_1;
     IRQn_Type nvic_dma_adc_2;
     IRQn_Type nvic_sync_isr1;
+    IRQn_Type nvic_fc_pwm_counter;
+    IRQn_Type nvic_start_signal_counter;
     uint32_t state;    
 } MCU_INT_t;  // interrupts
 
