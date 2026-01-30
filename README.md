@@ -9,7 +9,7 @@
 
 ## Overview
 
-This code example demonstrates sensorless field-oriented control (FOC) for drone motors using the Infineon's PSOC™ Control C3 MCU and XENSIV™ TLx5572 TMR current sensor on the REF_ESC_48V_80A_FOC Electronic Speed Controller (ESC) reference design. This code example includes the sensorless PMSM FOC with 3-phase active sensing solution based on Rotor Field Oriented (RFO) control. Additionally this code demonstrates flightcontroller communication for transmitting throttle commands from the flightcontroller to the ESC. 
+This code example demonstrates sensorless field-oriented control (FOC) for drone motors using the Infineon's PSOC™ Control C3 MCU and XENSIV™ TLx5572 TMR current sensor on the REF_ESC_48V_80A_FOC Electronic Speed Controller (ESC) reference design. This code example includes the sensorless PMSM FOC with 3-phase active sensing solution based on Rotor Field Oriented (RFO) control. Additionally this code demonstrates flightcontroller communication for transmitting throttle commands from the flightcontroller to the ESC using DSHOT600 protocol implementation  
 <br>
 <picture>
         <img src="./images/esc_drone.png" align="center" alt="esc_drone" width="600">
@@ -70,6 +70,20 @@ See the respective kit quick start guide for the hardware setup information. For
 - [ModusToolbox™ Motor Suite](https://softwaretools.infineon.com/tools/com.ifx.tb.tool.ifxmotorsolutions?_gl=1*1ua47i0*_gcl_au*MTA4NjIyMTM2OC4xNzU1MTc0ODI1*_ga*MjEzNDIwNzg4MS4xNjk0NjkzMTU1*_ga_KVD0BL538B*czE3NTc1MDQ0NDkkbzM0JGcxJHQxNzU3NTA0OTAxJGo1NSRsMCRoMTE1NjE3MTY3OA..) v2.6.1.
 - Programming language: C
 - [J-Link Software](https://www.segger.com/downloads/jlink/) v8.40 or greater to allow the use of XMC™ Link to program the board and debug the software. 
+
+## Hardware preparation
+
+The debugger connection to the board is shown in the image below. Please make sure that 3V3, GND and the RESET pin are connected for correct operation.
+<picture>
+        <img src="./images/debug_connection_diagram.png">
+</picture>
+
+Make sure that the debug settings of your debugger are set as follows
+<picture>
+        <img src="./images/debug_setting.png">
+</picture>
+
+The board should be recognized by the debugger and the firmware can be flashed.
 
 ## Using the code example
 
@@ -191,6 +205,10 @@ For direct evaluation of the motor control library it is recommended to use Modu
     <br>
     &nbsp;
 </li>
+
+## Flightcontroller communication using DShot600 protocol 
+The code example implements a DShot600 protocol decoder which allows the use of any off-the-shelf flightcontroller stacks such as Pixhawk 6. The main operation of the decoder is found in the function FC_PWM_COUNTER_IRQ_RunISR() within MCU.c. On the board, there are two DSHOT GPIO pins available which can be used in combination with the flightcontroller for speed control. 
+
 
 ## Other resources
 
