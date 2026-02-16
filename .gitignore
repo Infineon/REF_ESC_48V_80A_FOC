@@ -8,7 +8,7 @@
 # code into a VCS, you can ignore the .gitignore file.
 
 # ModusToolbox library repos or information about library dependencies
-libs/
+#libs/
 
 # Uncomment below line if you don't want to lock the library versions for your application
 # assetlocks.json
