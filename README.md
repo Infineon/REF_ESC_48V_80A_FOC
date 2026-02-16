@@ -66,10 +66,15 @@ See the respective kit quick start guide for the hardware setup information. For
 
 ## Software requirements and setup
 
-- [ModusToolbox™](https://www.infineon.com/modustoolbox) v3.5 or later. See the [ModusToolbox™ tools package installation guide](https://www.infineon.com/ModusToolboxInstallguide) for information about installing and configuring the tools package.
+- [ModusToolbox™](https://www.infineon.com/modustoolbox) version 3.5 (equals 2025.4.) with tools 3.5 version. See the [ModusToolbox™ tools package installation guide](https://www.infineon.com/ModusToolboxInstallguide) for information about installing and configuring the tools package.
 - [ModusToolbox™ Motor Suite](https://softwaretools.infineon.com/tools/com.ifx.tb.tool.ifxmotorsolutions?_gl=1*1ua47i0*_gcl_au*MTA4NjIyMTM2OC4xNzU1MTc0ODI1*_ga*MjEzNDIwNzg4MS4xNjk0NjkzMTU1*_ga_KVD0BL538B*czE3NTc1MDQ0NDkkbzM0JGcxJHQxNzU3NTA0OTAxJGo1NSRsMCRoMTE1NjE3MTY3OA..) v2.6.1.
 - Programming language: C
 - [J-Link Software](https://www.segger.com/downloads/jlink/) v8.40 or greater to allow the use of XMC™ Link to program the board and debug the software. 
+
+For a detailed versioning of the software packages please see image below
+<picture>
+        <img src="./images/mtb_setup_launcher.png">
+</picture>
 
 ## Hardware preparation
 
