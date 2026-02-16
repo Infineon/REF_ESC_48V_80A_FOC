@@ -71,7 +71,7 @@ See the respective kit quick start guide for the hardware setup information. For
 - Programming language: C
 - [J-Link Software](https://www.segger.com/downloads/jlink/) v8.40 or greater to allow the use of XMC™ Link to program the board and debug the software. 
 
-For a detailed versioning of the software packages please see image below
+For a detailed versioning of the software packages please see image below. **Please note, that the firmware was only tested and confirmed with these software tool versions.**
 <picture>
         <img src="./images/mtb_setup_launcher.png">
 </picture>
