@@ -46,7 +46,8 @@ else
 CY_BSP_POSTBUILD+=$(MTB_TOOLCHAIN_GCC_ARM__BASE_DIR)/bin/arm-none-eabi-objcopy -O binary $(MTB_TOOLS__OUTPUT_CONFIG_DIR)/$(APPNAME).$(MTB_RECIPE__SUFFIX_TARGET) $(MTB_TOOLS__OUTPUT_CONFIG_DIR)/$(APPNAME).bin;
 endif
 
-# Enable JLink debugger 
+# Enable JLink debugger
+# Modify the MTB_JLINK_DIR based on the JLink version in your PC
 BSP_PROGRAM_INTERFACE=JLink
 MTB_JLINK_DIR=C:/Program Files/SEGGER/JLink_V810j
 
