@@ -238,7 +238,8 @@ float MCU_TempSensorCalc()
 {
     float result;
 #if (ACTIVE_TEMP_SENSOR) // Active IC
-    result = (mcu[0].adc_scale.temp_ps * (uint16_t)mcu[0].dma_results[ADC_TEMP]) - (TEMP_SENSOR_OFFSET / TEMP_SENSOR_SCALE);
+    //result = (mcu[0].adc_scale.temp_ps * (uint16_t)(mcu[0].dma_results[ADC_TEMP])) - (TEMP_SENSOR_OFFSET / TEMP_SENSOR_SCALE);
+    result = (REF_ESC_ADC_SCALE * (uint16_t)(mcu[0].dma_results[ADC_TEMP])) + TEMP_SENSOR_OFFSET;
 #else // Passive NTC
     float lut_input = mcu[0].adc_scale.temp_ps * (uint16_t)mcu[0].dma_results[ADC_TEMP];
     uint32_t index = SAT(1U, TEMP_SENS_LUT_WIDTH - 1U, (uint32_t)(lut_input * Temp_Sens_LUT.step_inv));
@@ -253,12 +254,6 @@ RAMFUNC_END
 RAMFUNC_BEGIN
 void MCU_RunISR0()
 {
-#if defined(DMA_ADC_2_HW)
-    if((++mcu[0].isr0.count) % 3U != 0U) { return; }
-#else
-    if((++mcu[0].isr0.count) % 2U != 0U) { return; }
-#endif
-
     MCU_StartTimeCap(&mcu[0].isr0_exe);
 
 #if defined(COMPONENT_CAT3)
@@ -332,10 +327,16 @@ void MCU_RunISR0()
 #endif  /*End of #if defined (HALL_0_PORT && HALL_1_PORT && HALL_2_PORT)*/
 #endif  /*#if defined(CTRL_METHOD_RFO) || defined(CTRL_METHOD_TBC)*/
 
-    const int32_t Curr_ADC_Half_Point_Ticks = (0x1<<11);
-    motor[0].sensor_iface_ptr->i_samp_0.raw = ((3.3f / 4095.0f) * ( (float)(*(int32_t*)mcu[0].dma_results[0]) ) / ADC_CS_CURRENT_SENSITIVITY) - 78.62f;// - 117.6f;//*motor[0].params_ptr->sys.analog.shunt.current_sense_polarity); //4.0f * (0.0008056f / 0.0139f) * (float)((*(int32_t*)mcu[0].dma_results[0]) - 2032); //mcu[0].adc_scale.i_uvw * (Curr_ADC_Half_Point_Ticks - (uint16_t)mcu[0].dma_results[mcu[0].adc_mux.idx_isamp[0]])*motor[0].params_ptr->sys.analog.shunt.current_sense_polarity;
-    motor[0].sensor_iface_ptr->i_samp_1.raw = ((3.3f / 4095.0f) * ( (float)(*(int32_t*)mcu[0].dma_results[1]) ) / ADC_CS_CURRENT_SENSITIVITY) - 78.89f;// - 117.6f;//*motor[0].params_ptr->sys.analog.shunt.current_sense_polarity);
-    motor[0].sensor_iface_ptr->i_samp_2.raw = ((3.3f / 4095.0f) * ( (float)(*(int32_t*)mcu[0].dma_results[2]) ) / ADC_CS_CURRENT_SENSITIVITY) - 78.72f;// - 117.6f;//*motor[0].params_ptr->sys.analog.shunt.current_sense_polarity);
+    //const int32_t Curr_ADC_Half_Point_Ticks = (0x1<<11);
+    /*
+    motor[0].sensor_iface_ptr->i_samp_0.raw = ((3.3f / 4095.0f) * ( (float)(*(int32_t*)mcu[0].dma_results[1]) ) / ADC_CS_CURRENT_SENSITIVITY) - 78.62f;// - 117.6f;*motor[0].params_ptr->sys.analog.shunt.current_sense_polarity); //4.0f * (0.0008056f / 0.0139f) * (float)((*(int32_t*)mcu[0].dma_results[0]) - 2032); //mcu[0].adc_scale.i_uvw * (Curr_ADC_Half_Point_Ticks - (uint16_t)mcu[0].dma_results[mcu[0].adc_mux.idx_isamp[0]])*motor[0].params_ptr->sys.analog.shunt.current_sense_polarity;
+    motor[0].sensor_iface_ptr->i_samp_1.raw = ((3.3f / 4095.0f) * ( (float)(*(int32_t*)mcu[0].dma_results[2]) ) / ADC_CS_CURRENT_SENSITIVITY) - 78.89f;// - 117.6f;*motor[0].params_ptr->sys.analog.shunt.current_sense_polarity);
+    motor[0].sensor_iface_ptr->i_samp_2.raw = ((3.3f / 4095.0f) * ( (float)(*(int32_t*)mcu[0].dma_results[3]) ) / ADC_CS_CURRENT_SENSITIVITY) - 78.72f;// - 117.6f;*motor[0].params_ptr->sys.analog.shunt.current_sense_polarity);
+	*/
+    motor[0].sensor_iface_ptr->i_samp_0.raw = ((3.3f / 4095.0f) * (float)((uint16_t)mcu[0].dma_results[mcu[0].adc_mux.idx_isamp[0]]) / ADC_CS_CURRENT_SENSITIVITY) - REF_ESC_ISAMP0_OFFSET;
+    motor[0].sensor_iface_ptr->i_samp_1.raw = ((3.3f / 4095.0f) * (float)((uint16_t)mcu[0].dma_results[mcu[0].adc_mux.idx_isamp[1]]) / ADC_CS_CURRENT_SENSITIVITY) - REF_ESC_ISAMP1_OFFSET;
+    motor[0].sensor_iface_ptr->i_samp_2.raw = ((3.3f / 4095.0f) * (float)((uint16_t)mcu[0].dma_results[mcu[0].adc_mux.idx_isamp[2]]) / ADC_CS_CURRENT_SENSITIVITY) - REF_ESC_ISAMP2_OFFSET;	
+
 #if defined(ANALOG_ROUTING_MUX_RUNTIME)
     if(mcu[0].adc_mux.en)
     {
@@ -374,8 +375,11 @@ void MCU_RunISR0()
     }
 #endif
 #endif
-
-    motor[0].sensor_iface_ptr->v_dc.raw = 0.01519f * (*(uint32_t*)mcu[0].dma_results[3]); // ) mcu[0].adc_scale.v_dc * (uint16_t)mcu[0].dma_results[ADC_VBUS];
+	
+	//motor[0].sensor_iface_ptr->v_dc.raw = mcu[0].adc_scale.v_dc * (uint16_t)mcu[0].dma_results[ADC_VBUS];
+    //motor[0].sensor_iface_ptr->v_dc.raw = 0.01519f * (*(uint32_t*)mcu[0].dma_results[ADC_VBUS]);
+	motor[0].sensor_iface_ptr->v_dc.raw = (REF_ESC_ADC_SCALE * (uint16_t)mcu[0].dma_results[ADC_VBUS]) + VBUS_VDC_OFFSET;
+	
 #if defined(ADC_SAMP_VPOT_ENABLED)
     motor[0].sensor_iface_ptr->pot.raw = mcu[0].adc_scale.v_pot * (uint16_t)mcu[0].dma_results[ADC_VPOT];
 #endif
@@ -415,7 +419,7 @@ void MCU_RunISR0()
 
 #if defined(COMPONENT_CAT1)
         Cy_TCPWM_PWM_SetCompare0BufVal(ADC0_ISR0_HW, ADC0_ISR0_NUM, adc_isr0_cc_samp0);
-        //Cy_TCPWM_PWM_SetCompare1BufVal(ADC1_ISR0_HW, ADC1_ISR0_NUM, adc_isr0_cc_samp1);
+        Cy_TCPWM_PWM_SetCompare1BufVal(ADC1_ISR0_HW, ADC1_ISR0_NUM, adc_isr0_cc_samp1);
 #elif defined(COMPONENT_CAT3)
         XMC_CCU8_SLICE_SetTimerCompareMatchChannel1(ADC0_ISR0_HW, adc_isr0_cc_samp0);
         XMC_CCU8_SLICE_SetTimerCompareMatchChannel2(ADC1_ISR0_HW, adc_isr0_cc_samp1);
@@ -582,20 +586,19 @@ static void DMA_ADC_0_RunISR() {
     Cy_DMA_Channel_ClearInterrupt(DMA_ADC_0_HW, DMA_ADC_0_CHANNEL);
     NVIC_ClearPendingIRQ(mcu[0].interrupt.nvic_dma_adc_0);
     Cy_DMA_Channel_SetDescriptor(DMA_ADC_0_HW, DMA_ADC_0_CHANNEL, &DMA_ADC_0_Descriptor_0);
-    MCU_RunISR0();
 }
 RAMFUNC_END
 
-/*
 RAMFUNC_BEGIN
 static void DMA_ADC_1_RunISR() {
     Cy_DMA_Channel_ClearInterrupt(DMA_ADC_1_HW, DMA_ADC_1_CHANNEL);
     NVIC_ClearPendingIRQ(mcu[0].interrupt.nvic_dma_adc_1);
     Cy_DMA_Channel_SetDescriptor(DMA_ADC_1_HW, DMA_ADC_1_CHANNEL, &DMA_ADC_1_Descriptor_0);
+    
     MCU_RunISR0();
 }
 RAMFUNC_END
-*/
+
 
 #if defined(DMA_ADC_2_HW)
 RAMFUNC_BEGIN
@@ -720,8 +723,8 @@ void MCU_InitInterrupts()
     cy_stc_sysint_t DMA_ADC_0_cfg = { .intrSrc = DMA_ADC_0_IRQ, .intrPriority = 1 };
     Cy_SysInt_Init(&DMA_ADC_0_cfg, DMA_ADC_0_RunISR);
     // DMA_ADC_1:
-   // cy_stc_sysint_t DMA_ADC_1_cfg = { .intrSrc = DMA_ADC_1_IRQ, .intrPriority = 0 };
-   // Cy_SysInt_Init(&DMA_ADC_1_cfg, DMA_ADC_1_RunISR);
+   cy_stc_sysint_t DMA_ADC_1_cfg = { .intrSrc = DMA_ADC_1_IRQ, .intrPriority = 1 };
+   Cy_SysInt_Init(&DMA_ADC_1_cfg, DMA_ADC_1_RunISR);
 #if defined(DMA_ADC_2_IRQ)
     // DMA_ADC_2:
     cy_stc_sysint_t DMA_ADC_2_cfg = { .intrSrc = DMA_ADC_2_IRQ, .intrPriority = 0 };
@@ -741,7 +744,7 @@ void MCU_InitInterrupts()
     // NVIC connections ........................................................
 #if defined(COMPONENT_CAT1A) || defined(COMPONENT_CAT1B) || defined(COMPONENT_CAT3)
     mcu[0].interrupt.nvic_dma_adc_0 = DMA_ADC_0_IRQ;
-  //  mcu[0].interrupt.nvic_dma_adc_1 = DMA_ADC_1_IRQ;
+    mcu[0].interrupt.nvic_dma_adc_1 = DMA_ADC_1_IRQ;
     mcu[0].interrupt.nvic_sync_isr1 = SYNC_ISR1_IRQ;
     mcu[0].interrupt.nvic_fc_pwm_counter = FC_PWM_COUNTER_IRQ;
     mcu[0].interrupt.nvic_start_signal_counter = START_SIGNAL_COUNTER_IRQ;
@@ -840,10 +843,15 @@ void MCU_InitAnalogRouting()
 void MCU_InitDMAs()
 {
 #if defined(COMPONENT_CAT1)
-   
-    Cy_DMA_Descriptor_Init(DMA_Descriptors, DMA_Descriptor_Configs);
-	Cy_DMA_Descriptor_SetSrcAddress(DMA_Descriptors, ADC_Result_Regs);
-	Cy_DMA_Descriptor_SetDstAddress(DMA_Descriptors, &mcu[0].dma_results[0]);
+    for (uint8_t seq_idx=0U; seq_idx<ADC_SEQ_MAX; ++seq_idx)
+    {
+        for (uint8_t samp_idx=0U; samp_idx<ADC_SAMP_PER_SEQ_MAX; ++samp_idx)
+        {
+            Cy_DMA_Descriptor_Init(DMA_Descriptors[seq_idx][samp_idx], DMA_Descriptor_Configs[seq_idx][samp_idx]);
+            Cy_DMA_Descriptor_SetSrcAddress(DMA_Descriptors[seq_idx][samp_idx], ADC_Result_Regs[seq_idx][samp_idx]);
+            Cy_DMA_Descriptor_SetDstAddress(DMA_Descriptors[seq_idx][samp_idx], &mcu[0].dma_results[DMA_Result_Indices[seq_idx][samp_idx]]);
+        }
+    }
 
     // Configure DMA channels ..................................................
     Cy_DMA_Channel_Init(DMA_ADC_0_HW, DMA_ADC_0_CHANNEL, &DMA_ADC_0_channelConfig);
@@ -851,10 +859,10 @@ void MCU_InitDMAs()
     Cy_DMA_Channel_SetInterruptMask(DMA_ADC_0_HW, DMA_ADC_0_CHANNEL, CY_DMA_INTR_MASK);
     Cy_DMA_Channel_Enable(DMA_ADC_0_HW, DMA_ADC_0_CHANNEL);
 
-   // Cy_DMA_Channel_Init(DMA_ADC_1_HW, DMA_ADC_1_CHANNEL, &DMA_ADC_1_channelConfig);
-   // Cy_DMA_Channel_SetDescriptor(DMA_ADC_1_HW, DMA_ADC_1_CHANNEL, &DMA_ADC_1_Descriptor_0);
-   // Cy_DMA_Channel_SetInterruptMask(DMA_ADC_1_HW, DMA_ADC_1_CHANNEL, CY_DMA_INTR_MASK);
-   // Cy_DMA_Channel_Enable(DMA_ADC_1_HW, DMA_ADC_1_CHANNEL);
+   Cy_DMA_Channel_Init(DMA_ADC_1_HW, DMA_ADC_1_CHANNEL, &DMA_ADC_1_channelConfig);
+   Cy_DMA_Channel_SetDescriptor(DMA_ADC_1_HW, DMA_ADC_1_CHANNEL, &DMA_ADC_1_Descriptor_0);
+   Cy_DMA_Channel_SetInterruptMask(DMA_ADC_1_HW, DMA_ADC_1_CHANNEL, CY_DMA_INTR_MASK);
+   Cy_DMA_Channel_Enable(DMA_ADC_1_HW, DMA_ADC_1_CHANNEL);
 
 #if defined(DMA_ADC_2_HW)
     Cy_DMA_Channel_Init(DMA_ADC_2_HW, DMA_ADC_2_CHANNEL, &DMA_ADC_2_channelConfig);
@@ -916,13 +924,13 @@ void MCU_InitTimers()
     uint32_t cc0 = PWM_INVERSION ? (mcu[0].pwm.period - PWM_TRIG_ADVANCE) : (mcu[0].pwm.period >> 1);
     
     Cy_TCPWM_PWM_Init(ADC0_ISR0_HW, ADC0_ISR0_NUM, &ADC0_ISR0_config);
- //   Cy_TCPWM_PWM_Init(ADC1_ISR0_HW, ADC1_ISR0_NUM, &ADC1_ISR0_config);
+    Cy_TCPWM_PWM_Init(ADC1_ISR0_HW, ADC1_ISR0_NUM, &ADC1_ISR0_config);
     Cy_TCPWM_PWM_SetPeriod0(ADC0_ISR0_HW, ADC0_ISR0_NUM, mcu[0].isr0.period - 1U); // Sawtooth carrier
-  //  Cy_TCPWM_PWM_SetPeriod0(ADC1_ISR0_HW, ADC1_ISR0_NUM, mcu[0].isr0.period - 1U); // Sawtooth carrier
+    Cy_TCPWM_PWM_SetPeriod0(ADC1_ISR0_HW, ADC1_ISR0_NUM, mcu[0].isr0.period - 1U); // Sawtooth carrier
     Cy_TCPWM_PWM_SetCompare0Val(ADC0_ISR0_HW, ADC0_ISR0_NUM, cc0); // Read ADCs at the middle of lower switches' on-times
-  //  Cy_TCPWM_PWM_SetCompare1Val(ADC1_ISR0_HW, ADC1_ISR0_NUM, cc0); // Read ADCs at the middle of lower switches' on-times
+    Cy_TCPWM_PWM_SetCompare1Val(ADC1_ISR0_HW, ADC1_ISR0_NUM, cc0); // Read ADCs at the middle of lower switches' on-times
     Cy_TCPWM_PWM_SetCompare0BufVal(ADC0_ISR0_HW, ADC0_ISR0_NUM, cc0); // Read ADCs at the middle of lower switches' on-times   
-  //  Cy_TCPWM_PWM_SetCompare1BufVal(ADC1_ISR0_HW, ADC1_ISR0_NUM, cc0); // Read ADCs at the middle of lower switches' on-times
+    Cy_TCPWM_PWM_SetCompare1BufVal(ADC1_ISR0_HW, ADC1_ISR0_NUM, cc0); // Read ADCs at the middle of lower switches' on-times
     
     Cy_TCPWM_PWM_Init(PWM_SYNC_HW, PWM_SYNC_NUM, &PWM_SYNC_config);
     Cy_TCPWM_PWM_SetPeriod0(PWM_SYNC_HW, PWM_SYNC_NUM, mcu[0].isr0.period - 1U); // Sawtooth carrier
@@ -1040,8 +1048,8 @@ void MCU_StartPeripherals()
 #if defined(COMPONENT_CAT1)
     NVIC_EnableIRQ(mcu[0].interrupt.nvic_dma_adc_0);
     Cy_DMA_Enable(DMA_ADC_0_HW);
-//    NVIC_EnableIRQ(mcu[0].interrupt.nvic_dma_adc_1);
-//    Cy_DMA_Enable(DMA_ADC_1_HW);
+    NVIC_EnableIRQ(mcu[0].interrupt.nvic_dma_adc_1);
+    Cy_DMA_Enable(DMA_ADC_1_HW);
 #if defined(DMA_ADC_2_HW)
     NVIC_EnableIRQ(mcu[0].interrupt.nvic_dma_adc_2);
     Cy_DMA_Enable(DMA_ADC_2_HW);    
@@ -1083,13 +1091,12 @@ void MCU_StartPeripherals()
     mcu[0].isr0.count = 0U;
 #if defined(COMPONENT_CAT1)
     Cy_TCPWM_PWM_Enable(ADC0_ISR0_HW, ADC0_ISR0_NUM);
-//    Cy_TCPWM_PWM_Enable(ADC1_ISR0_HW, ADC1_ISR0_NUM);    
+    Cy_TCPWM_PWM_Enable(ADC1_ISR0_HW, ADC1_ISR0_NUM);    
     Cy_TCPWM_PWM_Enable(PWM_SYNC_HW, PWM_SYNC_NUM);
     Cy_TCPWM_PWM_Enable(PWM_U_HW, PWM_U_NUM);
     Cy_TCPWM_PWM_Enable(PWM_V_HW, PWM_V_NUM);
     Cy_TCPWM_PWM_Enable(PWM_W_HW, PWM_W_NUM);   
     Cy_TCPWM_PWM_Enable(SYNC_ISR1_HW, SYNC_ISR1_NUM);
-    
     
     Cy_TCPWM_Counter_Enable(FC_PWM_COUNTER_HW, FC_PWM_COUNTER_NUM);
     Cy_TCPWM_Counter_Enable(START_SIGNAL_COUNTER_HW, START_SIGNAL_COUNTER_NUM);
@@ -1182,7 +1189,7 @@ void MCU_StopPeripherals()
     Cy_TCPWM_PWM_Disable(PWM_V_HW, PWM_V_NUM);
     Cy_TCPWM_PWM_Disable(PWM_U_HW, PWM_U_NUM);
     Cy_TCPWM_PWM_Disable(PWM_SYNC_HW, PWM_SYNC_NUM);
- //   Cy_TCPWM_PWM_Disable(ADC1_ISR0_HW, ADC1_ISR0_NUM); 
+    Cy_TCPWM_PWM_Disable(ADC1_ISR0_HW, ADC1_ISR0_NUM); 
     Cy_TCPWM_PWM_Disable(ADC0_ISR0_HW, ADC0_ISR0_NUM);
     
     Cy_TCPWM_Counter_Disable(FC_PWM_COUNTER_HW, FC_PWM_COUNTER_NUM);
@@ -1234,8 +1241,8 @@ void MCU_StopPeripherals()
     Cy_DMA_Disable(DMA_ADC_2_HW);
     NVIC_DisableIRQ(mcu[0].interrupt.nvic_dma_adc_2);
 #endif 
- //   Cy_DMA_Disable(DMA_ADC_1_HW);
- //   NVIC_DisableIRQ(mcu[0].interrupt.nvic_dma_adc_1);
+    Cy_DMA_Disable(DMA_ADC_1_HW);
+    NVIC_DisableIRQ(mcu[0].interrupt.nvic_dma_adc_1);
     Cy_DMA_Disable(DMA_ADC_0_HW);
     NVIC_DisableIRQ(mcu[0].interrupt.nvic_dma_adc_0);
 
@@ -1369,6 +1376,7 @@ void MCU_EnableTimerReload()
       (_VAL2FLD(TCPWM_GRP_CNT_V2_TR_OUT_SEL_OUT0, CY_TCPWM_CNT_TRIGGER_ON_DISABLED) |
        _VAL2FLD(TCPWM_GRP_CNT_V2_TR_OUT_SEL_OUT1, CY_TCPWM_CNT_TRIGGER_ON_OVERFLOW));
 }
+
 #if (MOTOR_CTRL_MOTOR1_ENABLED)
 
 RAMFUNC_BEGIN

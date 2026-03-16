@@ -59,6 +59,13 @@
 
 #define ADC_SCALE_VUVW                           ((5.6f)/(56.0f+5.6f))         /*[V/V] = [Ohm/Ohm]*/
 #define ADC_SCALE_VDC                            ((5.6f)/(56.0f+5.6f))         /*[V/V] = [Ohm/Ohm]*/
+#define TEMP_SENSOR_SCALE						 ((5.6f)/(56.0f+5.6f))		   /*[V/V] = [Ohm/Ohm]*/
+#define REF_ESC_ISAMP0_OFFSET					 (78.62f)					   /*Specific for this reference design board*/
+#define REF_ESC_ISAMP1_OFFSET					 (78.89f)					   /*Specific for this reference design board*/
+#define REF_ESC_ISAMP2_OFFSET					 (78.72f)					   /*Specific for this reference design board*/
+#define REF_ESC_ADC_SCALE						 (0.01519f)					   /*Specific for this reference design board*/
+#define TEMP_SENSOR_OFFSET						 (4.0f)						   /*Specific for this reference design board*/
+#define VBUS_VDC_OFFSET						 	 (0.1f)						   /*Specific for this reference design board*/
 /*******************************************************************************/
 /*******************************************************************************/
 /*Parameter Controls*/
@@ -86,8 +93,8 @@
 
 /*********Faults*********/
 #define MOTOR_CTRL_OVER_CURRENT_THRESH             (120.0f)                     /*[%], over current fault threshold, percentage of motor continuous current*/
-#define MOTOR_CTRL_VDC_DEBOUNCE_TIME               (0.3f)                      /*[sec], VDC fault detection debouncing time*/
-#define MOTOR_CTRL_OVER_TEMP_THRESH                (5000.0f)                      /*[Celsius], over temperature fault threshold*/
+#define MOTOR_CTRL_VDC_DEBOUNCE_TIME               (0.3f)                       /*[sec], VDC fault detection debouncing time*/
+#define MOTOR_CTRL_OVER_TEMP_THRESH                (125.0f)                     /*[Celsius], over temperature fault threshold*/
 
 #define MOTOR_CTRL_FAULT_SHORT_METHOD              (Alternate_Short)            /*During fault switch status, Low_Side_Short = 0U, High_Side_Short = 1U, Alternate_Short = 2U*/
 #define MOTOR_CTRL_MAX_FAULT_CLR_TRIES             (10U)                        /*[], maximum nuumber of fault clear tries*/

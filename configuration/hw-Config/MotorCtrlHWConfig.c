@@ -47,45 +47,61 @@ TEMP_SENS_LUT_t   Temp_Sens_LUT   =
     .val = {109.5f, 85.4f, 71.7f, 62.0f, 54.3f, 47.7f, 41.9f, 36.5f, 31.4f, 26.3f, 21.2f, 16.0f, 10.2f, 3.7f, -4.3f, -16.1f} // [degree C]
 };
 
-static void* const ADC_Result_Regs_MUXA[ADC_SAMP_PER_SEQ_MAX] = \
-        {ADC_RESULT_ADDR(2), ADC_RESULT_ADDR(3), ADC_RESULT_ADDR(4), ADC_RESULT_ADDR(5)};
+static void* const ADC_Result_Regs_MUXA[ADC_SEQ_MAX][ADC_SAMP_PER_SEQ_MAX] = \
+        {{ADC_RESULT_ADDR(ADC_SAMP_IU_CHAN_IDX), ADC_RESULT_ADDR(ADC_SAMP_IW_CHAN_IDX), ADC_SAMP_UNUSED, ADC_SAMP_UNUSED, ADC_SAMP_UNUSED},
+         {ADC_RESULT_ADDR(ADC_SAMP_IV_CHAN_IDX), ADC_RESULT_ADDR(ADC_SAMP_VBUS_CHAN_IDX), ADC_SAMP_UNUSED, ADC_SAMP_UNUSED, ADC_RESULT_ADDR(ADC_SAMP_TEMP_CHAN_IDX)}};
 
-static const uint8_t DMA_Result_Indices_MUXA[ADC_SAMP_PER_SEQ_MAX] = \
-        {2, 3, 4, 5};
+static const uint8_t DMA_Result_Indices_MUXA[ADC_SEQ_MAX][ADC_SAMP_PER_SEQ_MAX] = \
+        {{ADC_ISAMPA, ADC_ISAMPC, ADC_VU, ADC_VW,     ADC_VPOT},
+         {ADC_ISAMPB, ADC_VBUS,   ADC_VV, ADC_ISAMPD, ADC_TEMP}};
 
-void* ADC_Result_Regs[ADC_SAMP_PER_SEQ_MAX];
-uint8_t DMA_Result_Indices[ADC_SAMP_PER_SEQ_MAX];
+void* ADC_Result_Regs[ADC_SEQ_MAX][ADC_SAMP_PER_SEQ_MAX];
+uint8_t DMA_Result_Indices[ADC_SEQ_MAX][ADC_SAMP_PER_SEQ_MAX];
 
-cy_stc_dma_descriptor_t* DMA_Descriptors = &DMA_ADC_0_Descriptor_0;
-      //  {{&DMA_ADC_0_Descriptor_0, &DMA_ADC_0_Descriptor_1, &DMA_ADC_0_Descriptor_2, &DMA_ADC_0_Descriptor_3, &DMA_ADC_0_Descriptor_4},
-      //   {&DMA_ADC_1_Descriptor_0, &DMA_ADC_1_Descriptor_1, &DMA_ADC_1_Descriptor_2, &DMA_ADC_1_Descriptor_3, &DMA_ADC_1_Descriptor_4}};
+cy_stc_dma_descriptor_t* DMA_Descriptors[ADC_SEQ_MAX][ADC_SAMP_PER_SEQ_MAX] = \
+        {{&DMA_ADC_0_Descriptor_0, &DMA_ADC_0_Descriptor_1, &DMA_ADC_0_Descriptor_2, &DMA_ADC_0_Descriptor_3, &DMA_ADC_0_Descriptor_4},
+         {&DMA_ADC_1_Descriptor_0, &DMA_ADC_1_Descriptor_1, &DMA_ADC_1_Descriptor_2, &DMA_ADC_1_Descriptor_3, &DMA_ADC_1_Descriptor_4}};
 
-const cy_stc_dma_descriptor_config_t* DMA_Descriptor_Configs = &DMA_ADC_0_Descriptor_0_config;
-       // {{&DMA_ADC_0_Descriptor_0_config, &DMA_ADC_0_Descriptor_1_config, &DMA_ADC_0_Descriptor_2_config, &DMA_ADC_0_Descriptor_3_config, &DMA_ADC_0_Descriptor_4_config},
-       //  {&DMA_ADC_1_Descriptor_0_config, &DMA_ADC_1_Descriptor_1_config, &DMA_ADC_1_Descriptor_2_config, &DMA_ADC_1_Descriptor_3_config, &DMA_ADC_1_Descriptor_4_config}};
+const cy_stc_dma_descriptor_config_t* DMA_Descriptor_Configs[ADC_SEQ_MAX][ADC_SAMP_PER_SEQ_MAX] = \
+        {{&DMA_ADC_0_Descriptor_0_config, &DMA_ADC_0_Descriptor_1_config, &DMA_ADC_0_Descriptor_2_config, &DMA_ADC_0_Descriptor_3_config, &DMA_ADC_0_Descriptor_4_config},
+         {&DMA_ADC_1_Descriptor_0_config, &DMA_ADC_1_Descriptor_1_config, &DMA_ADC_1_Descriptor_2_config, &DMA_ADC_1_Descriptor_3_config, &DMA_ADC_1_Descriptor_4_config}};
 
 void MCU_RoutingConfigMUXA()
 {
     const cy_stc_hppass_sar_grp_t ADC_SEQ0_Config =
     {
-        .dirSampMsk = 0x3CU,
+        .dirSampMsk = 0x14U, //0x3EU, //0x3CU,
         .muxSampMsk = 0x0U,
-        .muxChanIdx = {0U,3U,1U,1U},
+        .muxChanIdx = {0U,0U,0U,0U},
         .trig = CY_HPPASS_SAR_TRIG_0,
         .sampTime = CY_HPPASS_SAR_SAMP_TIME_0,
         .priority = true,
         .continuous = false,
     };
-
+    const cy_stc_hppass_sar_grp_t ADC_SEQ1_Config =
+    {
+        .dirSampMsk = 0x2AU,
+        .muxSampMsk = 0x0U,
+        .muxChanIdx = {0U,0U,0U,0U},
+        .trig = CY_HPPASS_SAR_TRIG_1,
+        .sampTime = CY_HPPASS_SAR_SAMP_TIME_0,
+        .priority = false,
+        .continuous = false,
+    };
     Cy_HPPASS_SAR_GroupConfig(0U, &ADC_SEQ0_Config);
+    Cy_HPPASS_SAR_GroupConfig(1U, &ADC_SEQ1_Config);
 
     Cy_HPPASS_AC_Start(0U, 1000U);
 
-    for (uint8_t samp_idx=0U; samp_idx<ADC_SAMP_PER_SEQ_MAX; ++samp_idx)
+    for (uint8_t seq_idx=0U; seq_idx<ADC_SEQ_MAX; ++seq_idx)
     {
-      ADC_Result_Regs[samp_idx] = (void*)ADC_Result_Regs_MUXA[samp_idx];
-      DMA_Result_Indices[samp_idx] = (uint8_t)DMA_Result_Indices_MUXA[samp_idx];
+        for (uint8_t samp_idx=0U; samp_idx<ADC_SAMP_PER_SEQ_MAX; ++samp_idx)
+        {
+            ADC_Result_Regs[seq_idx][samp_idx] = (void*)ADC_Result_Regs_MUXA[seq_idx][samp_idx];
+            DMA_Result_Indices[seq_idx][samp_idx] = (uint8_t)DMA_Result_Indices_MUXA[seq_idx][samp_idx];
+        }
     }
+    
 }
 
 /*

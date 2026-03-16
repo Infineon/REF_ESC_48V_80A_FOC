@@ -40,9 +40,8 @@
 #if defined(COMPONENT_CAT1B)
 
 /* Temperature sensor configurations */
-#define ACTIVE_TEMP_SENSOR  false        // Active IC (e.g. MCP9700T-E/TT) vs Passive NTC (e.g. NCP18WF104J03RB)
+#define ACTIVE_TEMP_SENSOR  true        // Active IC (e.g. MCP9700T-E/TT) vs Passive NTC (e.g. NCP18WF104J03RB)
 extern  TEMP_SENS_LUT_t     Temp_Sens_LUT;
-
 extern  TEMP_SENS_LUT_t     Temp_Sens_LUT_M1;
 
 /* PWM configurations*/
@@ -59,16 +58,15 @@ enum
     // ADC sequence 1 results
     ADC_ISAMPB = 5, ADC_ISAMPD = 6, ADC_VPOT = 7, ADC_VU = 8,   ADC_VW = 9,
     // Totals
-    ADC_SEQ_MAX = 1, ADC_SAMP_PER_SEQ_MAX = 4, ADC_MAX = 4
+    ADC_SEQ_MAX = 2, ADC_SAMP_PER_SEQ_MAX = 5, ADC_MAX = 10
 };
-extern void* ADC_Result_Regs[ADC_SAMP_PER_SEQ_MAX];
-extern uint8_t DMA_Result_Indices[ADC_SAMP_PER_SEQ_MAX];
-extern cy_stc_dma_descriptor_t* DMA_Descriptors; //[ADC_SAMP_PER_SEQ_MAX];
-extern const cy_stc_dma_descriptor_config_t* DMA_Descriptor_Configs; //[ADC_SAMP_PER_SEQ_MAX];
+extern void* ADC_Result_Regs[ADC_SEQ_MAX][ADC_SAMP_PER_SEQ_MAX];
+extern uint8_t DMA_Result_Indices[ADC_SEQ_MAX][ADC_SAMP_PER_SEQ_MAX];
+extern cy_stc_dma_descriptor_t* DMA_Descriptors[ADC_SEQ_MAX][ADC_SAMP_PER_SEQ_MAX];
+extern const cy_stc_dma_descriptor_config_t* DMA_Descriptor_Configs[ADC_SEQ_MAX][ADC_SAMP_PER_SEQ_MAX];
 
-// 2 simultaneous sampling ADCs
 void MCU_RoutingConfigMUXA();  // Routing ADC sequences, ADC0::[ISAMPA,ISAMPC,VBUS,TEMP,VV] & ADC1::[ISAMPB,ISAMPD,VPOT,VU,VW], {ISAMPA,ISAMPB,ISAMPC,ISAMPD}={IU,IV,IW,IDCLINKAVG}
-void MCU_RoutingConfigMUXB();  // Routing ADC sequences, ADC0::[ISAMPA,ISAMPC,VBUS,TEMP,VV] & ADC1::[ISAMPB,ISAMPD,VPOT,VU,VW], {ISAMPA,ISAMPB,ISAMPC,ISAMPD}={IDCLINK,IDCLINK,IDCLINKAVG,IDCLINKAVG}
+//void MCU_RoutingConfigMUXB();  // Routing ADC sequences, ADC0::[ISAMPA,ISAMPC,VBUS,TEMP,VV] & ADC1::[ISAMPB,ISAMPD,VPOT,VU,VW], {ISAMPA,ISAMPB,ISAMPC,ISAMPD}={IDCLINK,IDCLINK,IDCLINKAVG,IDCLINKAVG}
 
 #if (MOTOR_CTRL_MOTOR1_ENABLED)
 extern void* ADC_Result_Regs_M1[ADC_SEQ_MAX][ADC_SAMP_PER_SEQ_MAX];

@@ -23,6 +23,7 @@ GeneratedSource/
 
 # ModusToolbox build system output
 build/
+Custom/
 Debug/
 Release/
 *_build/
