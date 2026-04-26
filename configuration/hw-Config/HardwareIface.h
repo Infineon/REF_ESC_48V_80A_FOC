@@ -36,6 +36,22 @@
 
 #include "MCU.h"  // microcontroller
 
+
+#define NOT_SPECIFIED		0	// any unknown types
+								// using default MN1010_KV135 motor setting
+
+//----------------------------------------------------------------------------
+//--- Motor types
+//----------------------------------------------------------------------------
+#define MN1010_KV135		1	// default tested motor in Github's code example
+#define MN501_KV240			2	// EW 2026 motor connected to the propeller
+
+
+//---------------------------------------------------------------------------
+//--- Select motor type
+//---------------------------------------------------------------------------
+#define MOTOR_TYPE			MN1010_KV135	//MN501_KV240 //NOT_SPECIFIED
+
+
 void HW_IFACE_Init(uint8_t motor_id);
 void HW_IFACE_ConnectFcnPointers(void);
-

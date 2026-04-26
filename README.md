@@ -66,8 +66,8 @@ See the respective kit quick start guide for the hardware setup information. For
 
 ## Software requirements and setup
 
-- [ModusToolbox™](https://www.infineon.com/modustoolbox) version 3.5 (equals 2025.4.) with tools 3.5 version. See the [ModusToolbox™ tools package installation guide](https://www.infineon.com/ModusToolboxInstallguide) for information about installing and configuring the tools package.
-- [ModusToolbox™ Motor Suite](https://softwaretools.infineon.com/tools/com.ifx.tb.tool.ifxmotorsolutions?_gl=1*1ua47i0*_gcl_au*MTA4NjIyMTM2OC4xNzU1MTc0ODI1*_ga*MjEzNDIwNzg4MS4xNjk0NjkzMTU1*_ga_KVD0BL538B*czE3NTc1MDQ0NDkkbzM0JGcxJHQxNzU3NTA0OTAxJGo1NSRsMCRoMTE1NjE3MTY3OA..) v2.6.1.
+- [ModusToolbox™](https://www.infineon.com/modustoolbox) with Eclipse version 2025.4 / 2025.8 and tools 3.5 / 3.7 version. See the [ModusToolbox™ tools package installation guide](https://www.infineon.com/ModusToolboxInstallguide) for information about installing and configuring the tools package.
+- [ModusToolbox™ Motor Suite](https://softwaretools.infineon.com/tools/com.ifx.tb.tool.ifxmotorsolutions?_gl=1*1ua47i0*_gcl_au*MTA4NjIyMTM2OC4xNzU1MTc0ODI1*_ga*MjEzNDIwNzg4MS4xNjk0NjkzMTU1*_ga_KVD0BL538B*czE3NTc1MDQ0NDkkbzM0JGcxJHQxNzU3NTA0OTAxJGo1NSRsMCRoMTE1NjE3MTY3OA..) v2.6.1 / v 2.8.0.  
 - Programming language: C
 - [J-Link Software](https://www.segger.com/downloads/jlink/) v8.40 or greater to allow the use of XMC™ Link to program the board and debug the software. 
 
@@ -78,12 +78,12 @@ For a detailed versioning of the software packages please see image below. **Ple
 
 ## Hardware preparation
 
-The debugger connection to the board is shown in the image below. Please make sure that 3V3, GND and the RESET pin are connected for correct operation.
+The debugger connection to the board is shown in the image below. Please make sure that 3V3, GND and the RESET pin are connected for correct operation.<br>
 <picture>
         <img src="./images/debug_connection_diagram.png">
 </picture>
-
-Make sure that the debug settings of your debugger are set as follows
+Please refer to this [file](./images/REF_ESC_48V_80A_FOC_prod_test.pdf) (up to page 8) for more information on the hardware preparation. <br><br>
+Make sure that the debug settings of your debugger are set as follows:<br>
 <picture>
         <img src="./images/debug_setting.png">
 </picture>
@@ -97,63 +97,80 @@ The board should be recognized by the debugger and the firmware can be flashed.
 <br><br></li>
 <li id="step2"> Open the ModusToolbox™ IDE (e.g. Eclipse for ModusToolbox™ 2025.4) and import the project with the import wizard by pressing 'File' – 'Import…'. <br><br>
     <picture>
-        <img src="./images/mtb_import.png">
+        <img src="./images/mtb_import1.png">
     </picture>
     <br>
     &nbsp;
 </li>
 <li id="step3"> Select 'ModusToolbox™' – 'Import Existing Application In-Place' and press 'Next'. <br><br>
     <picture>
-        <img src="./images/mtb_import3.png">
+        <img src="./images/mtb_import2.png">
     </picture>
     <br>
     &nbsp;
 </li>
 <li id="step4"> Find the Project Location by pressing 'Browse…', and select the project folder accordingly and press 'Finish'. <br><br>
     <picture>
-        <img src="./images/mtb_import2.png" >
+        <img src="./images/mtb_import3.png" >
     </picture>
     <br>
     &nbsp;
 </li>
-<li id="step6"> Wait until the project is fully imported. Notice that additional folder 'mtb_shared' should be created (if there was none) in addition to the project folder itself, when the import is completed. This motor control project relies on the Infineon motor control library (current release is v3.0.0) provided in the ModusToolbox™ as shown inside the mtb_shared folder.<br><br>
+<li id="step5"> Wait until the project is fully imported. Notice that additional folder 'mtb_shared' should be created (if there was none) in addition to the project folder itself, when the import is completed. This motor control project relies on the Infineon motor control library (current release is v3.0.0) provided in the ModusToolbox™ as shown inside the mtb_shared folder.<br><br>
     <picture>
         <img src="./images/mtb_import4.png">
     </picture>
     <br>
     &nbsp;
 </li>
-<li id="step7"> Right click the project folder and select 'ModusToolbox™' followed by 'Library Manager 2...'. <br><br>
+<li id="step6"> Right click the project folder and select 'ModusToolbox™' followed by 'Library Manager 2...'. <br><br>
     <picture>
         <img src="./images/mtb_import5.png">
     </picture>
     <br>
     &nbsp;
 </li>
-<li id="step8"> Press the 'Update' button <br><br>
+<li id="step7"> Press the 'Update' button <br><br>
     <picture>
         <img src="./images/mtb_import6.png">
     </picture>
     <br>
     &nbsp;
 </li>
-<li id="step9"> When the Update is completed the sucessful messages should be displayed. If the update failed, try it again by repressing the 'Update' button. If this also fails, try to clean the project before trying it again. <br><br>
+<li id="step8"> When the Update is completed the sucessful messages should be displayed. If the update failed, try it again by repressing the 'Update' button. If this also fails, try to clean the project before trying it again. <br><br>
     <picture>
         <img src="./images/mtb_import7.png">
     </picture>
     <br>
     &nbsp;
 </li>
-<li id="step9"> Ensure that the motor parameters are set correctly. The header file with the parameters is found in /configuration/motor-ctrl-lib-config/ParamConfig.h. Also, when the DC bus voltage differs from the pre-set 48 V, change ADC_SCALE_VDC to scale for correct voltage readings.<br><br>
+<li id="step9"> Ensure that the motor parameters are set correctly.<br>
+This code example contains the motor parameters of two example motors: MN1010 KV135 and MN501S KV240. If any of these motors are used, please define the MOTOR_TYPE in /configuration/hw-Config/HardwareIface.h accordingly. If different motor is used, please define MOTOR_TYPE to NOT_SPECIFIED, and continue to provide your own motor parameters.<br><br>
     <picture>
-        <img src="./images/mtb_motorparams.png">
+        <img src="./images/mtb_motortype.png">
+    </picture>
+	<br><br>
+The header file for the motor parameters is found in /configuration/motor-ctrl-lib-config/ParamConfig.h. Also, when the DC bus voltage differs from the pre-set 48 V, change MOTOR_CTRL_VDC_NOM_VOLT to scale for correct voltage readings.<br><br>
+    <picture>
+        <img src="./images/mtb_motorparams_1.png">
+    </picture>
+    <picture>
+        <img src="./images/mtb_motorparams_2.png">
     </picture>
     <br>
     &nbsp;
 </li>
-<li id="step11"> After updating the parameters, the firmware can be flashed to the device. <br><br>
+<li id="step10"> Additionally, two offsets have been introduced to provide fine correction in the DC bus voltage and temperature reading in relation to the ADC conversion.<br>
+If the DC bus voltage is not precise, the offset value can be adjusted in VBUS_VDC_OFFSET available in the same header file as above. Similarly, if the temperature reading is not precise, please adjust the offset value in TEMP_SENSOR_OFFSET.<br><br>
     <picture>
-        <img src="./images/mtb_motorparams.png">
+        <img src="./images/mtb_offsetparams.png">
+    </picture>
+    <br>
+    &nbsp;
+</li>
+<li id="step11"> After updating the parameters, the firmware can be flashed to the device by first clicking the Project folder, followed by: Clean Project, and followed by: Build Project, and finally REF_ESC_48V_80A_FOC Program <br><br>
+    <picture>
+        <img src="./images/mtb_build_program.png">
     </picture>
     <br>
     &nbsp;
@@ -164,46 +181,55 @@ The board should be recognized by the debugger and the firmware can be flashed.
 For direct evaluation of the motor control library it is recommended to use ModusToolbox™ Motor Suite. ModusToolbox™ Motor Suite allows real-time data monitoring using oscilloscope functions as well as easy change of control parameters written to the MCUs flash memory. 
 
 <ol>
-<li id="step1"> Open ModusToolbox™ Motor Suite v2.6.1 in the ModusToolbox™ IDE. <br><br>
+<li id="step12"> Open ModusToolbox™ Motor Suite v2.6.1 of v2.8.0 in the ModusToolbox™ IDE, and when the ModusToolbox™ Motor Suite window pops up, click on Cancel. <br><br>
     <picture>
         <img src="./images/open_motorsuite.png">
     </picture>
     <br>
+    <picture>
+        <img src="./images/motorsuite_cancel.png">
+    </picture>
+    <br>
     &nbsp;
 </li>
-<li id="step2"> Create a new project by selecting PSOC Control™ C3M5 (Dual Motor Kit) and RFO as control method. <br><br>
+<li id="step13"> Create a new project by selecting KIT_PSC3M5_CC2 (Dual), RFO as control method, and motor-ctrl-lib version 3.00, and click on New Project. <br><br>
     <picture>
         <img src="./images/GUI_startup.png">
     </picture>
     <br>
     &nbsp;
 </li>
-<li id="step2"> Now the GUI control center will show up. Make sure that you are connected to the debugger (bottom right corner). On the bottom right panel there are icons with different functionality. From left to right: i) "Write Parameters" allows you to update parameter changes in the GUI to the MCU's flash memory. ii) "Flash Firmware" allows flashing a new .hex file to the MCU. iii) "Select ELF file" maps symbols from the .elf file to the GUI. iv) "Read Device" reads current parameters and updates the GUI. It is important to use the correct .elf as well as .hex files to maintain correct GUI performance. If firmware was already flashed to the MCU within ModusToolbox™ IDE, ensure correct symbol mapping by performing "Select ELF file". Point to the target .elf file of your project in the /build/last_config folder and the GUI will update.<br><br>
+<li id="step14"> Now the GUI control center will show up. Make sure that you are connected to the debugger (bottom right corner). On the bottom right panel there are icons with different functionality.<br><br>
+From left to right:<br>
+i) "Write Parameters" allows you to update parameter changes in the GUI to the MCU's flash memory.<br>
+ii) "Flash Firmware" allows flashing a new .hex file to the MCU.<br>
+iii) "Select ELF file" maps symbols from the .elf file to the GUI.<br>
+iv) "Read Device" reads current parameters and updates the GUI.<br><br>
+
+It is important to use the correct .elf as well as .hex files to maintain correct GUI performance. If firmware was already flashed to the MCU within ModusToolbox™ IDE, ensure correct symbol mapping by performing "Select ELF file". Point to the target .elf file of your project in the /build/last_config folder and the GUI will update.<br><br>
     <picture>
         <img src="./images/GUI_controlcenter.png">
     </picture>
     <br>
     &nbsp;
 </li>
-<li id="step3"> In order to run the motor, change to the "Test Bench" view. The test bench provides live data and machine state information. Check if the bus voltage is displayed correctly. Also check that the machine state is in "Init" mode. If the state is "Faul", clear the faults by toggling the "Clear Fault" button<br><br>
+<li id="step15"> In order to run the motor, change to the "Test Bench" view. The test bench provides live data and machine state information. Check if the bus voltage is displayed correctly. Also check that the machine state is in "Brake Boot" mode when the Drive is "Enabled".<br><br>
+There should not be any Faults displayed and Temperature measured is in the range of ~20 degree C.<br><br>
     <picture>
         <img src="./images/GUI_bench_check.png">
     </picture>
     <br>
     &nbsp;
 </li>
-<li id="step4"> The code example is set to speed control with alignment mode. Therefore, run the motor by setting a target speed (e.g. 20%) and the machine will transition to "Speed CL" state and the motor will spin.<br><br>
-</li>
-
-<li id="step5"> To investigate data while operation, ModusToolbox™ Motor Suite features an oscilloscope function. The icon is found on the top right corner.<br><br>
+<li id="step16"> The code example is set to speed control with alignment mode. Therefore, run the motor by setting a target speed (e.g. 20%) and the machine will transition to "Speed CL" state and the motor will spin.<br><br>
+To investigate data while operation, ModusToolbox™ Motor Suite features an oscilloscope function. The icon is found on the top right corner.<br><br>
     <picture>
-        <img src="./images/GUI_activate_scope.png">
+        <img src="./images/GUI_speed_test.png">
     </picture>
     <br>
     &nbsp;
 </li>
-
-<li id="step6"> The oscilloscope displays phase currents as well as electrical angle estimates from the observer. Successful operation should display phase currents and phase angle as shown in the picture below. <br><br>
+<li id="step17"> The oscilloscope displays phase currents as well as electrical angle estimates from the observer. Successful operation should display phase currents and phase angle as shown in the picture below. <br><br>
     <picture>
         <img src="./images/GUI_angle.png">
     </picture>
@@ -211,8 +237,10 @@ For direct evaluation of the motor control library it is recommended to use Modu
     &nbsp;
 </li>
 
-## Flightcontroller communication using DShot600 protocol 
-The code example implements a DShot600 protocol decoder which allows the use of any off-the-shelf flightcontroller stacks such as Pixhawk 6. The main operation of the decoder is found in the function FC_PWM_COUNTER_IRQ_RunISR() within MCU.c. On the board, there are two DSHOT GPIO pins available which can be used in combination with the flightcontroller for speed control. 
+## Flight controller communication using DShot600 protocol 
+The code example implements a DShot600 protocol decoder which allows the use of any off-the-shelf flightcontroller stacks such as Pixhawk 6. The main operation of the decoder is found in the function FC_PWM_COUNTER_IRQ_RunISR() within MCU.c.<br>
+On the board, there are two DSHOT GPIO pins available which can be used in combination with the flight controller for speed control. This code example makes use of DS1 pin, which is connected to MCU Port 7[2].<br>
+Please refer to this [file](./images/REF_ESC_48V_80A_DSHOT_Test.pdf) for more details on how to test this board using Dshot600 in communication with a flight controller to rotate a motor. 
 
 
 ## Other resources
