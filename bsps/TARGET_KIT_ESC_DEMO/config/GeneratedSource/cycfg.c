@@ -5,7 +5,7 @@
  * Simple wrapper containing all generated files and function to initialize
  * all generated code.
  * This file was automatically generated and should not be modified.
- * Configurator Backend 3.50.0
+ * Configurator Backend 3.70.0
  * device-db 4.28.0.8806
  * motor-ctrl-lib 3.0.0.608
  * mtb-pdl-cat1 3.17.0.43048

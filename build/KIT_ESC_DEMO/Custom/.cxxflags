@@ -1,1 +1,0 @@
--c -mcpu=cortex-m33 --specs=nano.specs -mfloat-abi=hard -mfpu=fpv5-sp-d16 -mthumb -ffunction-sections -fdata-sections -ffat-lto-objects -g -Wall -pipe -fno-rtti -fno-exceptions -mcmse -MMD -MP -MF $out.d -MT $out

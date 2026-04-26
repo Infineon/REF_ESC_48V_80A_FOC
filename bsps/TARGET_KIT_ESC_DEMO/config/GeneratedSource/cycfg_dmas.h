@@ -4,7 +4,7 @@
  * Description:
  * DMA configuration
  * This file was automatically generated and should not be modified.
- * Configurator Backend 3.50.0
+ * Configurator Backend 3.70.0
  * device-db 4.28.0.8806
  * motor-ctrl-lib 3.0.0.608
  * mtb-pdl-cat1 3.17.0.43048
@@ -53,9 +53,21 @@ extern "C" {
 #define DMA_ADC_0_HW DW0
 #define DMA_ADC_0_CHANNEL 0U
 #define DMA_ADC_0_IRQ cpuss_interrupts_dw0_0_IRQn
+#define DMA_ADC_1_ENABLED 1U
+#define DMA_ADC_1_HW DW0
+#define DMA_ADC_1_CHANNEL 1U
+#define DMA_ADC_1_IRQ cpuss_interrupts_dw0_1_IRQn
 
 extern const cy_stc_dma_descriptor_config_t DMA_ADC_0_Descriptor_0_config;
+extern const cy_stc_dma_descriptor_config_t DMA_ADC_0_Descriptor_1_config;
+extern const cy_stc_dma_descriptor_config_t DMA_ADC_0_Descriptor_2_config;
+extern const cy_stc_dma_descriptor_config_t DMA_ADC_0_Descriptor_3_config;
+extern const cy_stc_dma_descriptor_config_t DMA_ADC_0_Descriptor_4_config;
 extern cy_stc_dma_descriptor_t DMA_ADC_0_Descriptor_0;
+extern cy_stc_dma_descriptor_t DMA_ADC_0_Descriptor_1;
+extern cy_stc_dma_descriptor_t DMA_ADC_0_Descriptor_2;
+extern cy_stc_dma_descriptor_t DMA_ADC_0_Descriptor_3;
+extern cy_stc_dma_descriptor_t DMA_ADC_0_Descriptor_4;
 extern const cy_stc_dma_channel_config_t DMA_ADC_0_channelConfig;
 extern const cy_stc_dma_crc_config_t DMA_ADC_0_crcConfig;
 
@@ -66,6 +78,28 @@ extern const cyhal_dma_configurator_t DMA_ADC_0_hal_config;
 
 #if defined (COMPONENT_MTB_HAL) && (MTB_HAL_DRIVER_AVAILABLE_DMA)
 extern const mtb_hal_dma_configurator_t DMA_ADC_0_hal_config;
+#endif /* defined (COMPONENT_MTB_HAL) && (MTB_HAL_DRIVER_AVAILABLE_DMA) */
+
+extern const cy_stc_dma_descriptor_config_t DMA_ADC_1_Descriptor_0_config;
+extern const cy_stc_dma_descriptor_config_t DMA_ADC_1_Descriptor_1_config;
+extern const cy_stc_dma_descriptor_config_t DMA_ADC_1_Descriptor_2_config;
+extern const cy_stc_dma_descriptor_config_t DMA_ADC_1_Descriptor_3_config;
+extern const cy_stc_dma_descriptor_config_t DMA_ADC_1_Descriptor_4_config;
+extern cy_stc_dma_descriptor_t DMA_ADC_1_Descriptor_0;
+extern cy_stc_dma_descriptor_t DMA_ADC_1_Descriptor_1;
+extern cy_stc_dma_descriptor_t DMA_ADC_1_Descriptor_2;
+extern cy_stc_dma_descriptor_t DMA_ADC_1_Descriptor_3;
+extern cy_stc_dma_descriptor_t DMA_ADC_1_Descriptor_4;
+extern const cy_stc_dma_channel_config_t DMA_ADC_1_channelConfig;
+extern const cy_stc_dma_crc_config_t DMA_ADC_1_crcConfig;
+
+#if defined (CY_USING_HAL) || defined (CY_USING_HAL_LITE)
+extern const cyhal_resource_inst_t DMA_ADC_1_obj;
+extern const cyhal_dma_configurator_t DMA_ADC_1_hal_config;
+#endif /* defined (CY_USING_HAL) || defined (CY_USING_HAL_LITE) */
+
+#if defined (COMPONENT_MTB_HAL) && (MTB_HAL_DRIVER_AVAILABLE_DMA)
+extern const mtb_hal_dma_configurator_t DMA_ADC_1_hal_config;
 #endif /* defined (COMPONENT_MTB_HAL) && (MTB_HAL_DRIVER_AVAILABLE_DMA) */
 
 void reserve_cycfg_dmas(void);

@@ -4,7 +4,7 @@
  * Description:
  * Pin configuration
  * This file was automatically generated and should not be modified.
- * Configurator Backend 3.50.0
+ * Configurator Backend 3.70.0
  * device-db 4.28.0.8806
  * motor-ctrl-lib 3.0.0.608
  * mtb-pdl-cat1 3.17.0.43048
@@ -254,27 +254,7 @@ extern "C" {
 #define FC_PWM_HAL_IRQ CYHAL_GPIO_IRQ_NONE
 #define FC_PWM_HAL_DIR CYHAL_GPIO_DIR_BIDIRECTIONAL 
 #define FC_PWM_HAL_DRIVEMODE CYHAL_GPIO_DRIVE_PULLDOWN
-#endif /* defined (CY_USING_HAL) || (CY_USING_HAL_LITE) */
-
-#define N_FAULT_HW_ENABLED 1U
-#define N_FAULT_HW_PORT GPIO_PRT8
-#define N_FAULT_HW_PORT_NUM 8U
-#define N_FAULT_HW_PIN 0U
-#define N_FAULT_HW_NUM 0U
-#define N_FAULT_HW_DRIVEMODE CY_GPIO_DM_HIGHZ
-#define N_FAULT_HW_INIT_DRIVESTATE 1
-#ifndef ioss_0_port_8_pin_0_HSIOM
-    #define ioss_0_port_8_pin_0_HSIOM HSIOM_SEL_GPIO
-#endif
-#define N_FAULT_HW_HSIOM ioss_0_port_8_pin_0_HSIOM
-#define N_FAULT_HW_IRQ ioss_interrupts_sec_gpio_8_IRQn
-
-#if defined (CY_USING_HAL) || (CY_USING_HAL_LITE)
-#define N_FAULT_HW_HAL_PORT_PIN P8_0
-#define N_FAULT_HW P8_0
-#define N_FAULT_HW_HAL_IRQ CYHAL_GPIO_IRQ_NONE
-#define N_FAULT_HW_HAL_DIR CYHAL_GPIO_DIR_INPUT 
-#define N_FAULT_HW_HAL_DRIVEMODE CYHAL_GPIO_DRIVE_NONE
+#define N_FAULT_HW (P8_0)
 #endif /* defined (CY_USING_HAL) || (CY_USING_HAL_LITE) */
 
 extern const cy_stc_gpio_pin_config_t CYBSP_SWDCK_config;
@@ -335,12 +315,6 @@ extern const cy_stc_gpio_pin_config_t FC_PWM_config;
 
 #if defined (CY_USING_HAL) || (CY_USING_HAL_LITE)
 extern const cyhal_resource_inst_t FC_PWM_obj;
-#endif /* defined (CY_USING_HAL) || (CY_USING_HAL_LITE) */
-
-extern const cy_stc_gpio_pin_config_t N_FAULT_HW_config;
-
-#if defined (CY_USING_HAL) || (CY_USING_HAL_LITE)
-extern const cyhal_resource_inst_t N_FAULT_HW_obj;
 #endif /* defined (CY_USING_HAL) || (CY_USING_HAL_LITE) */
 
 void init_cycfg_pins(void);

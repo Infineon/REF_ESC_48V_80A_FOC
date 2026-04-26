@@ -1,3 +1,5 @@
+cycfg.c
+cycfg.h
 cycfg_clocks.c
 cycfg_clocks.h
 cycfg_dmas.c

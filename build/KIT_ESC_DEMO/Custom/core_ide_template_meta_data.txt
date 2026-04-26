@@ -1,4 +1,0 @@
-EXTERNAL_REF=  
-EXTERNAL_REF_KEY=&&LINKED_RESOURCES&&
-MTB_SHARED_DIR=../mtb_shared
-TEMPLATE_REPLACE=../mtb_shared/core-make/release-v3.6.2/make/scripts/interface_version_4/eclipse/project=.

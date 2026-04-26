@@ -1,5 +1,0 @@
-UUID=&&PROJECT_UUID&&
-TEMPLATE_REPLACE=../mtb_shared/recipe-make-cat1b/release-v2.8.0/make/scripts/interface_version_4/eclipse/CM33/flash/PSC3/normal/KitProg3/single=.mtbLaunchConfigs
-TEMPLATE_REPLACE=../mtb_shared/recipe-make-cat1b/release-v2.8.0/make/recipe/interface_version_4/Proj/single/internal=.mtbLaunchConfigs
-TEMPLATE_REPLACE=../mtb_shared/recipe-make-cat1b/release-v2.8.0/make/scripts/interface_version_4/eclipse/CM33/flash/PSC3/normal/KitProg3/any=.mtbLaunchConfigs
-TEMPLATE_REPLACE=../mtb_shared/recipe-make-cat1b/release-v2.8.0/make/recipe/interface_version_4/Proj/any=.mtbLaunchConfigs

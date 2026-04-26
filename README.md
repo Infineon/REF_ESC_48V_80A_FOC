@@ -18,7 +18,7 @@ This code example demonstrates sensorless field-oriented control (FOC) for drone
 ## Features
 
 - 3.3 V 32-bit microcontroller Arm® Cortex®-M33 180 MHz PSOC™ Control C3 with 256 kB Flash and 64 kB RAM
-- PWM and DShot interface for communication to drone flightcontroller
+- DShot600 interface for communication to drone flight controller
 - High power density power stages using newest OptiMOS™ 8 technology, providing up to 2 kW power
 - true 3-phase, non-invasive current sensing using XENSIV™ TMR-based current sensors
 - Full motor control firmware framework for fast evaluation and adaption
@@ -71,19 +71,20 @@ See the respective kit quick start guide for the hardware setup information. For
 - Programming language: C
 - [J-Link Software](https://www.segger.com/downloads/jlink/) v8.40 or greater to allow the use of XMC™ Link to program the board and debug the software. 
 
-For a detailed versioning of the software packages please see image below. **Please note, that the firmware was only tested and confirmed with these software tool versions.**
+For a detailed versioning of the software packages please see image below.<br>
+**Please note, that the firmware was only tested and confirmed with these software tool versions.**<br><br>
 <picture>
         <img src="./images/mtb_setup_launcher.png">
 </picture>
 
 ## Hardware preparation
 
-The debugger connection to the board is shown in the image below. Please make sure that 3V3, GND and the RESET pin are connected for correct operation.<br>
+The debugger connection to the board is shown in the image below. Please make sure that 3V3, GND and the RESET pin are connected for correct operation.<br><br>
 <picture>
         <img src="./images/debug_connection_diagram.png">
 </picture>
 Please refer to this [file](./images/REF_ESC_48V_80A_FOC_prod_test.pdf) (up to page 8) for more information on the hardware preparation. <br><br>
-Make sure that the debug settings of your debugger are set as follows:<br>
+Make sure that the debug settings of your debugger are set as follows:<br><br>
 <picture>
         <img src="./images/debug_setting.png">
 </picture>
@@ -137,7 +138,8 @@ The board should be recognized by the debugger and the firmware can be flashed.
     <br>
     &nbsp;
 </li>
-<li id="step8"> When the Update is completed the sucessful messages should be displayed. If the update failed, try it again by repressing the 'Update' button. If this also fails, try to clean the project before trying it again. <br><br>
+<li id="step8"> When the Update is completed the sucessful messages should be displayed and the window can be closed.<br>
+If the update failed, try it again by repressing the 'Update' button. If this also fails, try to clean the project before trying it again. <br><br>
     <picture>
         <img src="./images/mtb_import7.png">
     </picture>
@@ -154,6 +156,7 @@ The header file for the motor parameters is found in /configuration/motor-ctrl-l
     <picture>
         <img src="./images/mtb_motorparams_1.png">
     </picture>
+	<br>
     <picture>
         <img src="./images/mtb_motorparams_2.png">
     </picture>

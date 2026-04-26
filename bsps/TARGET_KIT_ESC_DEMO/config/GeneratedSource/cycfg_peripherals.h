@@ -4,7 +4,7 @@
  * Description:
  * Analog configuration
  * This file was automatically generated and should not be modified.
- * Configurator Backend 3.50.0
+ * Configurator Backend 3.70.0
  * device-db 4.28.0.8806
  * motor-ctrl-lib 3.0.0.608
  * mtb-pdl-cat1 3.17.0.43048
@@ -64,10 +64,19 @@ extern "C" {
 #define pass_0_ac_0_stt_0_vstate_0_ENABLED 1U
 #define pass_0_input_trigger_0_ENABLED 1U
 #define pass_0_input_trigger_0_IDX 0U
+#define pass_0_input_trigger_1_ENABLED 1U
+#define pass_0_input_trigger_1_IDX 1U
 #define pass_0_output_pulse_trigger_0_ENABLED 1U
 #define pass_0_output_pulse_trigger_0_IDX 0U
+#define pass_0_output_pulse_trigger_1_ENABLED 1U
+#define pass_0_output_pulse_trigger_1_IDX 1U
 #define pass_0_sar_0_ENABLED 1U
 #define pass_0_sar_0_VREF 3300U
+#define ADC_SAMP_TEMP_ENABLED 1U
+#define ADC_SAMP_TEMP_RSLT_PTR CY_HPPASS_SAR_CHAN_RSLT_PTR(1U)
+#define ADC_SAMP_TEMP_FIR_CHAN_IDX CY_HPPASS_FIR_CHAN_1
+#define ADC_SAMP_TEMP_CHAN_IDX 1U
+#define AN_A1_CHAN_IDX 1U
 #define ADC_SAMP_IU_ENABLED 1U
 #define ADC_SAMP_IU_RSLT_PTR CY_HPPASS_SAR_CHAN_RSLT_PTR(2U)
 #define ADC_SAMP_IU_FIR_CHAN_IDX CY_HPPASS_FIR_CHAN_2
@@ -88,11 +97,13 @@ extern "C" {
 #define ADC_SAMP_VBUS_FIR_CHAN_IDX CY_HPPASS_FIR_CHAN_5
 #define ADC_SAMP_VBUS_CHAN_IDX 5U
 #define AN_A5_CHAN_IDX 5U
+#define pass_0_sar_0_dir_sampler_1_ENABLED 1U
 #define pass_0_sar_0_dir_sampler_2_ENABLED 1U
 #define pass_0_sar_0_dir_sampler_3_ENABLED 1U
 #define pass_0_sar_0_dir_sampler_4_ENABLED 1U
 #define pass_0_sar_0_dir_sampler_5_ENABLED 1U
 #define ADC_SEQ0_ENABLED 1U
+#define ADC_SEQ1_ENABLED 1U
 #define SYNC_ISR1_ENABLED 1U
 #define SYNC_ISR1_HW TCPWM0
 #define SYNC_ISR1_NUM 0UL
@@ -126,6 +137,9 @@ extern "C" {
 #define START_SIGNAL_COUNTER_HW TCPWM0
 #define START_SIGNAL_COUNTER_NUM 262UL
 #define START_SIGNAL_COUNTER_IRQ tcpwm_0_interrupts_262_IRQn
+#define ADC1_ISR0_ENABLED 1U
+#define ADC1_ISR0_HW TCPWM0
+#define ADC1_ISR0_NUM 263UL
 
 extern const cy_stc_hppass_cfg_t pass_0_config;
 
@@ -140,11 +154,13 @@ extern const mtb_hal_adc_configurator_t pass_0_adc_hal_config;
 
 extern const cy_stc_hppass_ac_stt_t pass_0_ac_0_stt_0_config[];
 extern const cy_stc_hppass_sar_t pass_0_sar_0_config;
+extern const cy_stc_hppass_sar_chan_t ADC_SAMP_TEMP_config;
 extern const cy_stc_hppass_sar_chan_t ADC_SAMP_IU_config;
 extern const cy_stc_hppass_sar_chan_t ADC_SAMP_IV_config;
 extern const cy_stc_hppass_sar_chan_t ADC_SAMP_IW_config;
 extern const cy_stc_hppass_sar_chan_t ADC_SAMP_VBUS_config;
 extern const cy_stc_hppass_sar_grp_t ADC_SEQ0_config;
+extern const cy_stc_hppass_sar_grp_t ADC_SEQ1_config;
 extern const cy_stc_tcpwm_pwm_config_t SYNC_ISR1_config;
 
 #if defined (COMPONENT_MTB_HAL)
@@ -374,6 +390,29 @@ extern const mtb_hal_clock_t START_SIGNAL_COUNTER_hal_clock;
 #if defined (COMPONENT_MTB_HAL) && (MTB_HAL_DRIVER_AVAILABLE_TIMER)
 extern const mtb_hal_timer_configurator_t START_SIGNAL_COUNTER_hal_config;
 #endif /* defined (COMPONENT_MTB_HAL) && (MTB_HAL_DRIVER_AVAILABLE_TIMER) */
+
+extern const cy_stc_tcpwm_pwm_config_t ADC1_ISR0_config;
+
+#if defined (COMPONENT_MTB_HAL)
+extern const mtb_hal_peri_div_t ADC1_ISR0_clock_ref;
+extern const mtb_hal_clock_t ADC1_ISR0_hal_clock;
+#endif /* defined (COMPONENT_MTB_HAL) */
+
+#if defined (COMPONENT_MTB_HAL) && (MTB_HAL_DRIVER_AVAILABLE_PWM)
+extern const mtb_hal_pwm_configurator_t ADC1_ISR0_hal_config;
+#endif /* defined (COMPONENT_MTB_HAL) && (MTB_HAL_DRIVER_AVAILABLE_PWM) */
+
+#if defined (CY_USING_HAL) || defined(CY_USING_HAL_LITE)
+extern const cyhal_resource_inst_t ADC1_ISR0_obj;
+#endif /* defined (CY_USING_HAL) || defined(CY_USING_HAL_LITE) */
+
+#if defined(CY_USING_HAL_LITE) || defined (CY_USING_HAL)
+extern const cyhal_clock_t ADC1_ISR0_clock;
+#endif /* defined(CY_USING_HAL_LITE) || defined (CY_USING_HAL) */
+
+#if defined (CY_USING_HAL) || defined(CY_USING_HAL_LITE)
+extern const cyhal_pwm_configurator_t ADC1_ISR0_hal_config;
+#endif /* defined (CY_USING_HAL) || defined(CY_USING_HAL_LITE) */
 
 void pass_0_start(void);
 void init_cycfg_peripherals(void);

@@ -4,7 +4,7 @@
  * Description:
  * Pin configuration
  * This file was automatically generated and should not be modified.
- * Configurator Backend 3.50.0
+ * Configurator Backend 3.70.0
  * device-db 4.28.0.8806
  * motor-ctrl-lib 3.0.0.608
  * mtb-pdl-cat1 3.17.0.43048
@@ -299,33 +299,6 @@ const cyhal_resource_inst_t FC_PWM_obj =
 };
 #endif /* defined (CY_USING_HAL) || (CY_USING_HAL_LITE) */
 
-const cy_stc_gpio_pin_config_t N_FAULT_HW_config =
-{
-    .outVal = 1,
-    .driveMode = CY_GPIO_DM_HIGHZ,
-    .hsiom = N_FAULT_HW_HSIOM,
-    .intEdge = CY_GPIO_INTR_DISABLE,
-    .intMask = 0UL,
-    .vtrip = CY_GPIO_VTRIP_CMOS,
-    .slewRate = CY_GPIO_SLEW_FAST,
-    .driveSel = CY_GPIO_DRIVE_1_2,
-    .vregEn = 0UL,
-    .ibufMode = 0UL,
-    .vtripSel = 0UL,
-    .vrefSel = 0UL,
-    .vohSel = 0UL,
-    .nonSec = 0,
-};
-
-#if defined (CY_USING_HAL) || (CY_USING_HAL_LITE)
-const cyhal_resource_inst_t N_FAULT_HW_obj =
-{
-    .type = CYHAL_RSC_GPIO,
-    .block_num = N_FAULT_HW_PORT_NUM,
-    .channel_num = N_FAULT_HW_PIN,
-};
-#endif /* defined (CY_USING_HAL) || (CY_USING_HAL_LITE) */
-
 void init_cycfg_pins(void)
 {
     Cy_GPIO_Pin_Init(CYBSP_SWDCK_PORT, CYBSP_SWDCK_PIN, &CYBSP_SWDCK_config);
@@ -338,7 +311,6 @@ void init_cycfg_pins(void)
     Cy_GPIO_Pin_Init(PWMWH_PORT, PWMWH_PIN, &PWMWH_config);
     Cy_GPIO_Pin_Init(PWMWL_PORT, PWMWL_PIN, &PWMWL_config);
     Cy_GPIO_Pin_Init(FC_PWM_PORT, FC_PWM_PIN, &FC_PWM_config);
-    Cy_GPIO_Pin_Init(N_FAULT_HW_PORT, N_FAULT_HW_PIN, &N_FAULT_HW_config);
 }
 void reserve_cycfg_pins(void)
 {
@@ -353,6 +325,5 @@ void reserve_cycfg_pins(void)
     cyhal_hwmgr_reserve(&PWMWH_obj);
     cyhal_hwmgr_reserve(&PWMWL_obj);
     cyhal_hwmgr_reserve(&FC_PWM_obj);
-    cyhal_hwmgr_reserve(&N_FAULT_HW_obj);
 #endif /* defined (CY_USING_HAL) */
 }

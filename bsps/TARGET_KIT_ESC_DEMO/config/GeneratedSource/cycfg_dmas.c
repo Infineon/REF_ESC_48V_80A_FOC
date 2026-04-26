@@ -4,7 +4,7 @@
  * Description:
  * DMA configuration
  * This file was automatically generated and should not be modified.
- * Configurator Backend 3.50.0
+ * Configurator Backend 3.70.0
  * device-db 4.28.0.8806
  * motor-ctrl-lib 3.0.0.608
  * mtb-pdl-cat1 3.17.0.43048
@@ -31,26 +31,146 @@
 
 const cy_stc_dma_descriptor_config_t DMA_ADC_0_Descriptor_0_config =
 {
-    .retrigger = CY_DMA_RETRIG_IM,
-    .interruptType = CY_DMA_DESCR,
-    .triggerOutType = CY_DMA_DESCR,
+    .retrigger = CY_DMA_WAIT_FOR_REACT,
+    .interruptType = CY_DMA_DESCR_CHAIN,
+    .triggerOutType = CY_DMA_DESCR_CHAIN,
     .channelState = CY_DMA_CHANNEL_ENABLED,
-    .triggerInType = CY_DMA_DESCR,
-    .dataSize = CY_DMA_WORD,
+    .triggerInType = CY_DMA_DESCR_CHAIN,
+    .dataSize = CY_DMA_HALFWORD,
     .srcTransferSize = CY_DMA_TRANSFER_SIZE_WORD,
-    .dstTransferSize = CY_DMA_TRANSFER_SIZE_WORD,
-    .descriptorType = CY_DMA_1D_TRANSFER,
+    .dstTransferSize = CY_DMA_TRANSFER_SIZE_DATA,
+    .descriptorType = CY_DMA_SINGLE_TRANSFER,
     .srcAddress = NULL,
     .dstAddress = NULL,
-    .srcXincrement = 1,
-    .dstXincrement = 1,
-    .xCount = 4,
+    .srcXincrement = 0,
+    .dstXincrement = 0,
+    .xCount = 1,
     .srcYincrement = 0,
     .dstYincrement = 0,
     .yCount = 1,
-    .nextDescriptor = &DMA_ADC_0_Descriptor_0,
+    .nextDescriptor = &DMA_ADC_0_Descriptor_1,
+};
+const cy_stc_dma_descriptor_config_t DMA_ADC_0_Descriptor_1_config =
+{
+    .retrigger = CY_DMA_WAIT_FOR_REACT,
+    .interruptType = CY_DMA_DESCR_CHAIN,
+    .triggerOutType = CY_DMA_DESCR_CHAIN,
+    .channelState = CY_DMA_CHANNEL_ENABLED,
+    .triggerInType = CY_DMA_DESCR_CHAIN,
+    .dataSize = CY_DMA_HALFWORD,
+    .srcTransferSize = CY_DMA_TRANSFER_SIZE_WORD,
+    .dstTransferSize = CY_DMA_TRANSFER_SIZE_DATA,
+    .descriptorType = CY_DMA_SINGLE_TRANSFER,
+    .srcAddress = NULL,
+    .dstAddress = NULL,
+    .srcXincrement = 0,
+    .dstXincrement = 0,
+    .xCount = 1,
+    .srcYincrement = 0,
+    .dstYincrement = 0,
+    .yCount = 1,
+    .nextDescriptor = &DMA_ADC_0_Descriptor_2,
+};
+const cy_stc_dma_descriptor_config_t DMA_ADC_0_Descriptor_2_config =
+{
+    .retrigger = CY_DMA_WAIT_FOR_REACT,
+    .interruptType = CY_DMA_DESCR_CHAIN,
+    .triggerOutType = CY_DMA_DESCR_CHAIN,
+    .channelState = CY_DMA_CHANNEL_ENABLED,
+    .triggerInType = CY_DMA_DESCR_CHAIN,
+    .dataSize = CY_DMA_HALFWORD,
+    .srcTransferSize = CY_DMA_TRANSFER_SIZE_WORD,
+    .dstTransferSize = CY_DMA_TRANSFER_SIZE_DATA,
+    .descriptorType = CY_DMA_SINGLE_TRANSFER,
+    .srcAddress = NULL,
+    .dstAddress = NULL,
+    .srcXincrement = 0,
+    .dstXincrement = 0,
+    .xCount = 1,
+    .srcYincrement = 0,
+    .dstYincrement = 0,
+    .yCount = 1,
+    .nextDescriptor = &DMA_ADC_0_Descriptor_3,
+};
+const cy_stc_dma_descriptor_config_t DMA_ADC_0_Descriptor_3_config =
+{
+    .retrigger = CY_DMA_WAIT_FOR_REACT,
+    .interruptType = CY_DMA_DESCR_CHAIN,
+    .triggerOutType = CY_DMA_DESCR_CHAIN,
+    .channelState = CY_DMA_CHANNEL_ENABLED,
+    .triggerInType = CY_DMA_DESCR_CHAIN,
+    .dataSize = CY_DMA_HALFWORD,
+    .srcTransferSize = CY_DMA_TRANSFER_SIZE_WORD,
+    .dstTransferSize = CY_DMA_TRANSFER_SIZE_DATA,
+    .descriptorType = CY_DMA_SINGLE_TRANSFER,
+    .srcAddress = NULL,
+    .dstAddress = NULL,
+    .srcXincrement = 0,
+    .dstXincrement = 0,
+    .xCount = 1,
+    .srcYincrement = 0,
+    .dstYincrement = 0,
+    .yCount = 1,
+    .nextDescriptor = &DMA_ADC_0_Descriptor_4,
+};
+const cy_stc_dma_descriptor_config_t DMA_ADC_0_Descriptor_4_config =
+{
+    .retrigger = CY_DMA_WAIT_FOR_REACT,
+    .interruptType = CY_DMA_DESCR_CHAIN,
+    .triggerOutType = CY_DMA_DESCR_CHAIN,
+    .channelState = CY_DMA_CHANNEL_ENABLED,
+    .triggerInType = CY_DMA_DESCR_CHAIN,
+    .dataSize = CY_DMA_HALFWORD,
+    .srcTransferSize = CY_DMA_TRANSFER_SIZE_WORD,
+    .dstTransferSize = CY_DMA_TRANSFER_SIZE_DATA,
+    .descriptorType = CY_DMA_SINGLE_TRANSFER,
+    .srcAddress = NULL,
+    .dstAddress = NULL,
+    .srcXincrement = 0,
+    .dstXincrement = 0,
+    .xCount = 1,
+    .srcYincrement = 0,
+    .dstYincrement = 0,
+    .yCount = 1,
+    .nextDescriptor = NULL,
 };
 cy_stc_dma_descriptor_t DMA_ADC_0_Descriptor_0 =
+{
+    .ctl = 0UL,
+    .src = 0UL,
+    .dst = 0UL,
+    .xCtl = 0UL,
+    .yCtl = 0UL,
+    .nextPtr = 0UL,
+};
+cy_stc_dma_descriptor_t DMA_ADC_0_Descriptor_1 =
+{
+    .ctl = 0UL,
+    .src = 0UL,
+    .dst = 0UL,
+    .xCtl = 0UL,
+    .yCtl = 0UL,
+    .nextPtr = 0UL,
+};
+cy_stc_dma_descriptor_t DMA_ADC_0_Descriptor_2 =
+{
+    .ctl = 0UL,
+    .src = 0UL,
+    .dst = 0UL,
+    .xCtl = 0UL,
+    .yCtl = 0UL,
+    .nextPtr = 0UL,
+};
+cy_stc_dma_descriptor_t DMA_ADC_0_Descriptor_3 =
+{
+    .ctl = 0UL,
+    .src = 0UL,
+    .dst = 0UL,
+    .xCtl = 0UL,
+    .yCtl = 0UL,
+    .nextPtr = 0UL,
+};
+cy_stc_dma_descriptor_t DMA_ADC_0_Descriptor_4 =
 {
     .ctl = 0UL,
     .src = 0UL,
@@ -101,9 +221,202 @@ const mtb_hal_dma_configurator_t DMA_ADC_0_hal_config =
 };
 #endif /* defined (COMPONENT_MTB_HAL) && (MTB_HAL_DRIVER_AVAILABLE_DMA) */
 
+const cy_stc_dma_descriptor_config_t DMA_ADC_1_Descriptor_0_config =
+{
+    .retrigger = CY_DMA_WAIT_FOR_REACT,
+    .interruptType = CY_DMA_DESCR_CHAIN,
+    .triggerOutType = CY_DMA_DESCR_CHAIN,
+    .channelState = CY_DMA_CHANNEL_ENABLED,
+    .triggerInType = CY_DMA_DESCR_CHAIN,
+    .dataSize = CY_DMA_HALFWORD,
+    .srcTransferSize = CY_DMA_TRANSFER_SIZE_WORD,
+    .dstTransferSize = CY_DMA_TRANSFER_SIZE_DATA,
+    .descriptorType = CY_DMA_SINGLE_TRANSFER,
+    .srcAddress = NULL,
+    .dstAddress = NULL,
+    .srcXincrement = 0,
+    .dstXincrement = 0,
+    .xCount = 1,
+    .srcYincrement = 0,
+    .dstYincrement = 0,
+    .yCount = 1,
+    .nextDescriptor = &DMA_ADC_1_Descriptor_1,
+};
+const cy_stc_dma_descriptor_config_t DMA_ADC_1_Descriptor_1_config =
+{
+    .retrigger = CY_DMA_WAIT_FOR_REACT,
+    .interruptType = CY_DMA_DESCR_CHAIN,
+    .triggerOutType = CY_DMA_DESCR_CHAIN,
+    .channelState = CY_DMA_CHANNEL_ENABLED,
+    .triggerInType = CY_DMA_DESCR_CHAIN,
+    .dataSize = CY_DMA_HALFWORD,
+    .srcTransferSize = CY_DMA_TRANSFER_SIZE_WORD,
+    .dstTransferSize = CY_DMA_TRANSFER_SIZE_DATA,
+    .descriptorType = CY_DMA_SINGLE_TRANSFER,
+    .srcAddress = NULL,
+    .dstAddress = NULL,
+    .srcXincrement = 0,
+    .dstXincrement = 0,
+    .xCount = 1,
+    .srcYincrement = 0,
+    .dstYincrement = 0,
+    .yCount = 1,
+    .nextDescriptor = &DMA_ADC_1_Descriptor_2,
+};
+const cy_stc_dma_descriptor_config_t DMA_ADC_1_Descriptor_2_config =
+{
+    .retrigger = CY_DMA_WAIT_FOR_REACT,
+    .interruptType = CY_DMA_DESCR_CHAIN,
+    .triggerOutType = CY_DMA_DESCR_CHAIN,
+    .channelState = CY_DMA_CHANNEL_ENABLED,
+    .triggerInType = CY_DMA_DESCR_CHAIN,
+    .dataSize = CY_DMA_HALFWORD,
+    .srcTransferSize = CY_DMA_TRANSFER_SIZE_WORD,
+    .dstTransferSize = CY_DMA_TRANSFER_SIZE_DATA,
+    .descriptorType = CY_DMA_SINGLE_TRANSFER,
+    .srcAddress = NULL,
+    .dstAddress = NULL,
+    .srcXincrement = 0,
+    .dstXincrement = 0,
+    .xCount = 1,
+    .srcYincrement = 0,
+    .dstYincrement = 0,
+    .yCount = 1,
+    .nextDescriptor = &DMA_ADC_1_Descriptor_3,
+};
+const cy_stc_dma_descriptor_config_t DMA_ADC_1_Descriptor_3_config =
+{
+    .retrigger = CY_DMA_WAIT_FOR_REACT,
+    .interruptType = CY_DMA_DESCR_CHAIN,
+    .triggerOutType = CY_DMA_DESCR_CHAIN,
+    .channelState = CY_DMA_CHANNEL_ENABLED,
+    .triggerInType = CY_DMA_DESCR_CHAIN,
+    .dataSize = CY_DMA_HALFWORD,
+    .srcTransferSize = CY_DMA_TRANSFER_SIZE_WORD,
+    .dstTransferSize = CY_DMA_TRANSFER_SIZE_DATA,
+    .descriptorType = CY_DMA_SINGLE_TRANSFER,
+    .srcAddress = NULL,
+    .dstAddress = NULL,
+    .srcXincrement = 0,
+    .dstXincrement = 0,
+    .xCount = 1,
+    .srcYincrement = 0,
+    .dstYincrement = 0,
+    .yCount = 1,
+    .nextDescriptor = &DMA_ADC_1_Descriptor_4,
+};
+const cy_stc_dma_descriptor_config_t DMA_ADC_1_Descriptor_4_config =
+{
+    .retrigger = CY_DMA_WAIT_FOR_REACT,
+    .interruptType = CY_DMA_DESCR_CHAIN,
+    .triggerOutType = CY_DMA_DESCR_CHAIN,
+    .channelState = CY_DMA_CHANNEL_ENABLED,
+    .triggerInType = CY_DMA_DESCR_CHAIN,
+    .dataSize = CY_DMA_HALFWORD,
+    .srcTransferSize = CY_DMA_TRANSFER_SIZE_WORD,
+    .dstTransferSize = CY_DMA_TRANSFER_SIZE_DATA,
+    .descriptorType = CY_DMA_SINGLE_TRANSFER,
+    .srcAddress = NULL,
+    .dstAddress = NULL,
+    .srcXincrement = 0,
+    .dstXincrement = 0,
+    .xCount = 1,
+    .srcYincrement = 0,
+    .dstYincrement = 0,
+    .yCount = 1,
+    .nextDescriptor = NULL,
+};
+cy_stc_dma_descriptor_t DMA_ADC_1_Descriptor_0 =
+{
+    .ctl = 0UL,
+    .src = 0UL,
+    .dst = 0UL,
+    .xCtl = 0UL,
+    .yCtl = 0UL,
+    .nextPtr = 0UL,
+};
+cy_stc_dma_descriptor_t DMA_ADC_1_Descriptor_1 =
+{
+    .ctl = 0UL,
+    .src = 0UL,
+    .dst = 0UL,
+    .xCtl = 0UL,
+    .yCtl = 0UL,
+    .nextPtr = 0UL,
+};
+cy_stc_dma_descriptor_t DMA_ADC_1_Descriptor_2 =
+{
+    .ctl = 0UL,
+    .src = 0UL,
+    .dst = 0UL,
+    .xCtl = 0UL,
+    .yCtl = 0UL,
+    .nextPtr = 0UL,
+};
+cy_stc_dma_descriptor_t DMA_ADC_1_Descriptor_3 =
+{
+    .ctl = 0UL,
+    .src = 0UL,
+    .dst = 0UL,
+    .xCtl = 0UL,
+    .yCtl = 0UL,
+    .nextPtr = 0UL,
+};
+cy_stc_dma_descriptor_t DMA_ADC_1_Descriptor_4 =
+{
+    .ctl = 0UL,
+    .src = 0UL,
+    .dst = 0UL,
+    .xCtl = 0UL,
+    .yCtl = 0UL,
+    .nextPtr = 0UL,
+};
+const cy_stc_dma_channel_config_t DMA_ADC_1_channelConfig =
+{
+    .descriptor = &DMA_ADC_1_Descriptor_0,
+    .preemptable = false,
+    .priority = 0,
+    .enable = false,
+    .bufferable = false,
+};
+const cy_stc_dma_crc_config_t DMA_ADC_1_crcConfig =
+{
+    .dataReverse = false,
+    .dataXor = 0,
+    .reminderReverse = false,
+    .reminderXor = 0,
+    .polynomial = 79764919,
+};
+
+#if defined (CY_USING_HAL) || defined (CY_USING_HAL_LITE)
+const cyhal_resource_inst_t DMA_ADC_1_obj =
+{
+    .type = CYHAL_RSC_DW,
+    .block_num = 0U,
+    .channel_num = DMA_ADC_1_CHANNEL,
+};
+const cyhal_dma_configurator_t DMA_ADC_1_hal_config =
+{
+    .resource = &DMA_ADC_1_obj,
+    .dw_channel_config = &DMA_ADC_1_channelConfig,
+    .dw_descriptor_config = &DMA_ADC_1_Descriptor_4_config,
+};
+#endif /* defined (CY_USING_HAL) || defined (CY_USING_HAL_LITE) */
+
+#if defined (COMPONENT_MTB_HAL) && (MTB_HAL_DRIVER_AVAILABLE_DMA)
+const mtb_hal_dma_configurator_t DMA_ADC_1_hal_config =
+{
+    .dma_type = MTB_HAL_DMA_DW,
+    .channel = DMA_ADC_1_CHANNEL,
+    .dw_base = DMA_ADC_1_HW,
+    .dw_descriptor = &DMA_ADC_1_Descriptor_4,
+};
+#endif /* defined (COMPONENT_MTB_HAL) && (MTB_HAL_DRIVER_AVAILABLE_DMA) */
+
 void reserve_cycfg_dmas(void)
 {
 #if defined (CY_USING_HAL)
     cyhal_hwmgr_reserve(&DMA_ADC_0_obj);
+    cyhal_hwmgr_reserve(&DMA_ADC_1_obj);
 #endif /* defined (CY_USING_HAL) */
 }
