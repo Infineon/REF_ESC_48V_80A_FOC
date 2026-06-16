@@ -34,6 +34,7 @@
 
 #include "MotorCtrlHWConfig.h"
 #include "Controller.h"
+#include "HardwareIface.h"
 
 
 /*Parameter Confiugration for Motor 0*/
