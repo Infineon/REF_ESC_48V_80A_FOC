@@ -153,3 +153,5 @@ ehthumbs_vista.db
 .ninja_log
 .jlink
 .clang-format
+.cache/
+.mtb-prefs.json

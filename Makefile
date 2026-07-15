@@ -40,13 +40,13 @@ MTB_TYPE=COMBINED
 # To change the target, it is recommended to use the Library manager
 # ('make library-manager' from command line), which will also update Eclipse IDE launch
 # configurations.
-TARGET=KIT_ESC_DEMO
+TARGET=REF_ESC_48V_80A_FOC
 
 # Name of application (used to derive name of final linked file).
 #
 # If APPNAME is edited, ensure to update or regenerate launch
 # configurations for your IDE.
-APPNAME=mtb-example-ce241420-dual-motor-control
+APPNAME=mtb-example-ceXXXXXX-motor-control-esc
 
 # Name of toolchain to use. Options include:
 #
@@ -92,7 +92,7 @@ DEFINES+=MOTOR_CTRL_NO_OF_MOTOR=0x01
 # Configure number of oscilloscope channels in the "Motor Suite"
 #
 # Supported values : 0 - 8, value 0 will disabled oscilloscope 
-DEFINES+=MOTOR_CTRL_NO_OF_SCOPE_CHANNELS=0x08
+DEFINES+=MOTOR_CTRL_NO_OF_SCOPE_CHANNELS=0x04
 # Enable follwoing add-on function by remove "MOTOR_CTRL_DISABLE_ADDON_FEATURES" definition
 # 
 # Motor phase U,V and W voltage measurement; only used in "Dyno" mode
