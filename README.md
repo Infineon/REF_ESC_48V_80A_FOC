@@ -66,8 +66,8 @@ See the respective kit quick start guide for the hardware setup information. For
 
 ## Software requirements and setup
 
-- [ModusToolbox™](https://www.infineon.com/modustoolbox) with Eclipse version 2025.4 / 2025.8 and tools 3.5 / 3.7 version. See the [ModusToolbox™ tools package installation guide](https://www.infineon.com/ModusToolboxInstallguide) for information about installing and configuring the tools package.
-- [ModusToolbox™ Motor Suite](https://softwaretools.infineon.com/tools/com.ifx.tb.tool.ifxmotorsolutions?_gl=1*1ua47i0*_gcl_au*MTA4NjIyMTM2OC4xNzU1MTc0ODI1*_ga*MjEzNDIwNzg4MS4xNjk0NjkzMTU1*_ga_KVD0BL538B*czE3NTc1MDQ0NDkkbzM0JGcxJHQxNzU3NTA0OTAxJGo1NSRsMCRoMTE1NjE3MTY3OA..) v2.6.1 / v 2.8.0.  
+- [ModusToolbox™](https://www.infineon.com/modustoolbox) with Eclipse version 2025.4 / 2025.8 / 2026.3 and tools 3.5 / 3.7 / 3.8 version. See the [ModusToolbox™ tools package installation guide](https://www.infineon.com/ModusToolboxInstallguide) for information about installing and configuring the tools package.
+- [ModusToolbox™ Motor Suite](https://softwaretools.infineon.com/tools/com.ifx.tb.tool.ifxmotorsolutions?_gl=1*1ua47i0*_gcl_au*MTA4NjIyMTM2OC4xNzU1MTc0ODI1*_ga*MjEzNDIwNzg4MS4xNjk0NjkzMTU1*_ga_KVD0BL538B*czE3NTc1MDQ0NDkkbzM0JGcxJHQxNzU3NTA0OTAxJGo1NSRsMCRoMTE1NjE3MTY3OA..) v2.6.1 / v 2.8.0 / v 2.9.0
 - Programming language: C
 - [J-Link Software](https://www.segger.com/downloads/jlink/) v8.40 or greater to allow the use of XMC™ Link to program the board and debug the software. 
 
@@ -147,7 +147,7 @@ If the update failed, try it again by repressing the 'Update' button. If this al
     &nbsp;
 </li>
 <li id="step9"> Ensure that the motor parameters are set correctly.<br>
-This code example contains the motor parameters of two example motors: MN1010 KV135 and MN501S KV240. If any of these motors are used, please define the MOTOR_TYPE in /configuration/hw-Config/HardwareIface.h accordingly. If different motor is used, please define MOTOR_TYPE to NOT_SPECIFIED, and continue to provide your own motor parameters.<br><br>
+This code example contains the motor parameters of two example motors: MN1010 KV135, MN501S KV240, and V3115_KV400. If any of these motors are used, please define the MOTOR_TYPE in /configuration/hw-Config/HardwareIface.h accordingly. If different motor is used, please define MOTOR_TYPE to NOT_SPECIFIED, and continue to provide your own motor parameters.<br><br>
     <picture>
         <img src="./images/mtb_motortype.png">
     </picture>
@@ -163,15 +163,15 @@ The header file for the motor parameters is found in /configuration/motor-ctrl-l
     <br>
     &nbsp;
 </li>
-<li id="step10"> Additionally, two offsets have been introduced to provide fine correction in the DC bus voltage and temperature reading in relation to the ADC conversion.<br>
+<!-- <li id="step10"> Additionally, two offsets have been introduced to provide fine correction in the DC bus voltage and temperature reading in relation to the ADC conversion.<br>
 If the DC bus voltage is not precise, the offset value can be adjusted in VBUS_VDC_OFFSET available in the same header file as above. Similarly, if the temperature reading is not precise, please adjust the offset value in TEMP_SENSOR_OFFSET.<br><br>
     <picture>
         <img src="./images/mtb_offsetparams.png">
     </picture>
     <br>
     &nbsp;
-</li>
-<li id="step11"> After updating the parameters, the firmware can be flashed to the device by first clicking the Project folder, followed by: Clean Project, and followed by: Build Project, and finally REF_ESC_48V_80A_FOC Program <br><br>
+</li> -->
+<li id="step11"> After updating the necessary parameters, the firmware can be flashed to the device by first clicking the Project folder, followed by: Clean Project, and followed by: Build Project, and finally REF_ESC_48V_80A_FOC Program <br><br>
     <picture>
         <img src="./images/mtb_build_program.png">
     </picture>
@@ -217,7 +217,7 @@ It is important to use the correct .elf as well as .hex files to maintain correc
     &nbsp;
 </li>
 <li id="step15"> In order to run the motor, change to the "Test Bench" view. The test bench provides live data and machine state information. Check if the bus voltage is displayed correctly. Also check that the machine state is in "Brake Boot" mode when the Drive is "Enabled".<br><br>
-There should not be any Faults displayed and Temperature measured is in the range of ~20 degree C.<br><br>
+There should not be any Faults displayed.<br><br>
     <picture>
         <img src="./images/GUI_bench_check.png">
     </picture>
@@ -241,9 +241,18 @@ To investigate data while operation, ModusToolbox™ Motor Suite features an osc
 </li>
 
 ## Flight controller communication using DShot600 protocol 
-The code example implements a DShot600 protocol decoder which allows the use of any off-the-shelf flightcontroller stacks such as Pixhawk 6. The main operation of the decoder is found in the function FC_PWM_COUNTER_IRQ_RunISR() within MCU.c.<br>
-On the board, there are two DSHOT GPIO pins available which can be used in combination with the flight controller for speed control. This code example makes use of DS1 pin, which is connected to MCU Port 7[2].<br>
-Please refer to this [file](./images/REF_ESC_48V_80A_DSHOT_Test.pdf) for more details on how to test this board using Dshot600 in communication with a flight controller to rotate a motor. 
+The code example implements a DShot600 protocol decoder which allows the use of any off-the-shelf flightcontroller stacks such as Pixhawk 6. The main operation of the decoder is found in the function FC_PWM1_COUNTER_IRQ_RunISR(), FC_PWM2_COUNTER_IRQ_RunISR(), and START_SIGNAL_COUNTER_IRQ_RunISR() within MCU.c.<br><br>
+On the logic board, there are two DSHOT GPIO pins available which can be used for redundancy in combination with two flight controllers for speed control. This code example has been updated with implementation of both DSHOT pins, which are connected to MCU Port 7[2] and 7[1), respectively.<br>
+DS1 is the interface with the main flight controller, and if for unknown reason the main flight controller stops working during operation, the second flight controller can take over via DS2 and the drone operation can be still maintained. If for unknown reason the second flight controller also stops working, the ESC will reduce its speed slowly until the motor stops turning.<br><br>
+If only one DSHOT interface is to be used, timer-counter FC_PWM2_COUNTER in Device Configurator can be deactivated simply by unchecking it. In this case, DSHOT2 interface will be excluded from the compiled software. However, the behaviour is maintained in such a way that if the flight controller happens to stop working, the ESC will reduce its speed slowly until the motor stops turning. 
+<br><br>
+    <picture>
+        <img src="./images/DevConfig-DS2.png">
+    </picture>
+    <br>
+    &nbsp;
+</li>
+Please refer to this [file](./images/REF_ESC_48V_80A_DSHOT_Test.pdf) for more details on how to test this board using Dshot600 in communication with a flight controller to rotate a motor.<br><br>
 
 
 ## Other resources

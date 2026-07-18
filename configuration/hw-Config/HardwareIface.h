@@ -45,12 +45,12 @@
 //----------------------------------------------------------------------------
 #define MN1010_KV135		1	// default tested motor in Github's code example
 #define MN501_KV240			2	// EW 2026 motor connected to the propeller
-
+#define V3115_KV400			3	// motor tested in AP on Alphaswift platform
 
 //---------------------------------------------------------------------------
 //--- Select motor type
 //---------------------------------------------------------------------------
-#define MOTOR_TYPE			MN1010_KV135	//MN501_KV240 //NOT_SPECIFIED
+#define MOTOR_TYPE			MN1010_KV135	//MN501_KV240 //V3115_KV400 //NOT_SPECIFIED
 
 
 void HW_IFACE_Init(uint8_t motor_id);

@@ -43,7 +43,7 @@
 /******************Parameter Configuration for Motor 0**************************/
 /*******************************************************************************/
 /*Power Board configuration*/
-#define ADC_VREF_GAIN                            ((5.0f)/(3.3f))               /*[V/V], voltage-reference buffer gain (e.g. scaling 5.0V down to 3.3V)*/
+#define ADC_VREF_GAIN                            ((3.3f)/(3.3f))               /*[V/V], voltage-reference buffer gain (e.g. scaling 5.0V down to 3.3V)*/
 
 #define ADC_CS_CURRENT_MEASUREMENT_TYPE          (Active_Sensor)                   /*Shunt_resistance "Shunt_res" =0 or active sensor "Active_Sensor" =1*/
 #define ADC_CS_CURRENT_SENSE_POLARITY            (HS_Current_Sense)            /*Low side current sense "LS_Current_Sense" =0 or High side current Sense "HS_Current_sense"=1*/
@@ -51,7 +51,7 @@
 #define ADC_CS_SHUNT_TYPE                        (Three_Shunt)                 /*Three_Shunt =0, Single_Shunt =1*/
 
 #define ADC_CS_SHUNT_RES                         (10.0E-3f)                    /*[Ohm], Applicable for Current shunt type of measurement*/
-#define ADC_CS_CURRENT_SENSITIVITY               (21.0E-3f)                    /*[V/A], Applicable for active current sense type of measurement*/
+#define ADC_CS_CURRENT_SENSITIVITY               (13.2E-3f)                    /*[V/A], Applicable for active current sense type of measurement*/
 
 #define ADC_CS_OPAMP_GAIN                        (1.0f)                       /*[V/V], external amplifier gain for current measurement*/
 
@@ -59,14 +59,9 @@
 #define ADC_CS_SS_MIN_SEGMENT_TIME               (3.0E-6f)                     /*[us], Current measurement single shunt minimum measurable window */
 
 #define ADC_SCALE_VUVW                           ((5.6f)/(56.0f+5.6f))         /*[V/V] = [Ohm/Ohm]*/
-#define ADC_SCALE_VDC                            ((5.6f)/(56.0f+5.6f))         /*[V/V] = [Ohm/Ohm]*/
-#define TEMP_SENSOR_SCALE						 ((5.6f)/(56.0f+5.6f))		   /*[V/V] = [Ohm/Ohm]*/
-#define REF_ESC_ISAMP0_OFFSET					 (78.62f)					   /*Specific for this reference design board*/
-#define REF_ESC_ISAMP1_OFFSET					 (78.89f)					   /*Specific for this reference design board*/
-#define REF_ESC_ISAMP2_OFFSET					 (78.72f)					   /*Specific for this reference design board*/
-#define REF_ESC_ADC_SCALE						 (0.01519f)					   /*Specific for this reference design board*/
-#define TEMP_SENSOR_OFFSET						 (6.0f)						   /*Specific for this reference design board*/
-#define VBUS_VDC_OFFSET						 	 (0.0f)						   /*Specific for this reference design board*/
+#define ADC_SCALE_VDC                            ((10.0f)/(180.0f+10.0f))      /*[V/V] = [Ohm/Ohm], VBUS voltage divider on ESC Logic board*/
+#define TEMP_SENSOR_SCALE						 (0.0195f)		   			   /*[V/degC], MCP9701AT-E/LT temperature coefficient*/
+#define TEMP_SENSOR_OFFSET						 (0.4f)						   /*[V], MCP9701AT-E/LT output voltage at 0 degC*/
 /*******************************************************************************/
 /*******************************************************************************/
 /*Parameter Controls*/
@@ -221,6 +216,8 @@
 #define MOTOR_CTRL_VDC_NOM_VOLT                    (48.0f)                       /*[V], Nominal DC bus voltage*/
 #elif (MOTOR_TYPE == MN501_KV240)
 #define MOTOR_CTRL_VDC_NOM_VOLT                    (48.0f)                       /*[V], Nominal DC bus voltage*/
+#elif (MOTOR_TYPE == V3115_KV400)
+#define MOTOR_CTRL_VDC_NOM_VOLT                    (48.0f)						 /*[V], Nominal DC bus voltage*/
 #else //(MOTOR_TYPE == NOT_SPECIFIED)
 #define MOTOR_CTRL_VDC_NOM_VOLT                    (48.0f)                       /*[V], Nominal DC bus voltage*/
 #endif
@@ -258,6 +255,22 @@
 #define MOTOR_MAX_SPEED                            (4000.0f)                     /*[RPM],  maximum no load speed*/
 #if defined(CTRL_METHOD_SFO)
 #define MOTOR_MTPV_TORQUE_MARGIN                   (90.0f)                       /*[%],  MTPV torque margin*/
+#endif
+#elif (MOTOR_TYPE == V3115_KV400)
+#define MOTOR_POLE                                 (14.0f)                       /*[],  motor poles*/
+#define MOTOR_LQ                                   (35.0E-6f)					 /*[H], Stator q-axis inductance*/
+#define MOTOR_LD                                   (35.0E-6f)					 /*[H], Stator d-axis inductance*/
+#define MOTOR_I_AM                                 (1.4E-3f)					 /*[Wb],  Rotor flux linkage*/
+#define MOTOR_R                                    (145.0E-3f)					 /*{Ohm],  stator resistance*/
+#define MOTOR_TORQUE_MAX                           (0.017f)						 /*[Nm],  maximum torque*/
+#define MOTOR_CURRENT_PEAK                         (20.0f)						 /*[A],  peak current rating*/
+#define MOTOR_CURRENT_CONT                         (13.0f)						 /*[A],  continuous current rating*/
+#define MOTOR_ID_MAX                               (1.75f)                       /*[A], maximum d-axis current*/
+#define MOTOR_VOLTAGE                              (48.0f)                       /*[V], motor voltage*/
+#define MOTOR_NORM_SPEED                           (14000.0f)					 /*[RPM], nominal speed*/
+#define MOTOR_MAX_SPEED                            (14000.0f)					 /*[RPM],  maximum no load speed*/
+#if defined(CTRL_METHOD_SFO)
+#define MOTOR_MTPV_TORQUE_MARGIN                   (90.0f)						 /*[%],  MTPV torque margin*/
 #endif
 #else //(MOTOR_TYPE == NOT_SPECIFIED)
 #define MOTOR_POLE                                 (42.0f)                       /*[],  motor poles*/
