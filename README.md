@@ -37,16 +37,16 @@ This code example demonstrates sensorless field-oriented control (FOC) for drone
     <td>PSOC™ Control C3 - high performance microcontroller tailored for motor control</td>
   </tr>
   <tr>
-    <td><a href="no link">TLE5572-AE04E1-R-E0001</a></td>
-    <td>XENSIV™ TLE5572 TMR-based current sensor with integrated op-amp</td>
+    <td><a href="https://www.infineon.com/part/TLI5572-AE08E1-E0001">TLI5572-AE08E1-E0001 / TLE5572-AE08E1-R-E0001</a></td>
+    <td>XENSIV™ TLx5572 TMR-based current sensor with integrated op-amp</td>
   </tr>
   <tr>
     <td><a href="https://www.infineon.com/part/1EDN7550B">1EDN7550B</a></td>
     <td>EiceDRIVER™ 1EDN7550B TDI gate driver</td>
   </tr>
   <tr>
-    <td><a href="no link">ISC019N10NM8</a></td>
-    <td>OptiMOS™ 8 power MOSFET 100 V, 1.9 mΩ in a SuperSO8 (5x6) package</td>
+    <td><a href="https://www.infineon.com/part/ISC040N10NM8">ISC040N10NM8</a></td>
+    <td>OptiMOS™ 8 power MOSFET 100 V, 4.0 mΩ in a SuperSO8 (5x6) package</td>
   </tr>
   <tr>
     <td><a href="https://www.infineon.com/part/TLS202B1MBV33">TLS202B1MBV33</a></td>
@@ -147,7 +147,7 @@ If the update failed, try it again by repressing the 'Update' button. If this al
     &nbsp;
 </li>
 <li id="step9"> Ensure that the motor parameters are set correctly.<br>
-This code example contains the motor parameters of two example motors: MN1010 KV135, MN501S KV240, and V3115_KV400. If any of these motors are used, please define the MOTOR_TYPE in /configuration/hw-Config/HardwareIface.h accordingly. If different motor is used, please define MOTOR_TYPE to NOT_SPECIFIED, and continue to provide your own motor parameters.<br><br>
+This code example contains the motor parameters of three example motors: MN1010 KV135, MN501S KV240, and V3115_KV400. If any of these motors are used, please define the MOTOR_TYPE in /configuration/hw-Config/HardwareIface.h accordingly. If different motor is used, please define MOTOR_TYPE to NOT_SPECIFIED, and continue to provide your own motor parameters.<br><br>
     <picture>
         <img src="./images/mtb_motortype.png">
     </picture>
